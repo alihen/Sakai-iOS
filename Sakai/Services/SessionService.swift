@@ -19,6 +19,7 @@ public class SessionService {
             let username = Sakai.shared.username,
             let password = Sakai.shared.password else {
                 assert(false, "Configure your Sakai instance with a configuration and login details before using the service.")
+                return
         }
 
         self.loginUser(username: username, password: password) { (sessionResult) in

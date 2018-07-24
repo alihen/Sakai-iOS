@@ -42,6 +42,7 @@ extension SakaiAPI: TargetType {
     public var baseURL: URL {
         guard let url: URL = Sakai.shared.baseURL else {
             assert(false, "Please define the base URL by providing the Sakai instance with a configuration.")
+            return URL(string: "")!
         }
 
         return url
