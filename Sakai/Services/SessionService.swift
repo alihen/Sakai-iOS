@@ -18,7 +18,7 @@ public class SessionService {
         guard
             let username = Sakai.shared.username,
             let password = Sakai.shared.password else {
-                assert(false, "Configure your Sakai instance with a configuration and login details before using the service.")
+                print("Configure your Sakai instance with a configuration and login details before using the service.")
                 return
         }
 
