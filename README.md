@@ -1,8 +1,8 @@
 <h1 align="center">Sakai-iOS</h1>
 
 <p align="center">
-    <a href="https://cocoapods.org/pods/Sakai-iOS">
-        <img src="https://img.shields.io/cocoapods/v/Sakai-iOS.svg" alt="CocoaPods" />
+    <a href="https://cocoapods.org/pods/Sakai">
+        <img src="https://img.shields.io/cocoapods/v/Sakai.svg" alt="CocoaPods" />
     </a>
     <a href="https://twitter.com/ali_hen">
     <img src="https://img.shields.io/badge/contact-@ali_hen-purple.svg?style=flat" alt="Twitter: @ali_hen" />
