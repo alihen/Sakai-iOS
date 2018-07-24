@@ -1,0 +1,51 @@
+PODS:
+  - Alamofire (4.7.2)
+  - Moya (11.0.0):
+    - Moya/Core (= 11.0.0)
+  - Moya/Core (11.0.0):
+    - Alamofire (~> 4.1)
+    - Result (~> 3.0)
+  - Nimble (7.1.1)
+  - Quick (1.3.0)
+  - Require (2.0.0)
+  - Result (3.2.4)
+  - Sakai (0.0.1):
+    - Alamofire (~> 4.1)
+    - Moya (= 11.0.0)
+    - Result (~> 3.0)
+  - Sourcery (0.13.1)
+
+DEPENDENCIES:
+  - Nimble (= 7.1.1)
+  - Quick (= 1.3.0)
+  - Require (= 2.0.0)
+  - Sakai (from `../`)
+  - Sourcery (= 0.13.1)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Moya
+    - Nimble
+    - Quick
+    - Require
+    - Result
+    - Sourcery
+
+EXTERNAL SOURCES:
+  Sakai:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  Moya: be29766339783963a70d1279d69c891ab3a1393c
+  Nimble: 391f07782af4b37914f9bd7b2ffbb952731b8202
+  Quick: 03278013f71aa05fe9ecabc94fbcc6835f1ee76f
+  Require: f93abc18dda985f665465cf027cea7166455fb28
+  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  Sakai: bc222dc60d2575c97d6180ebcb45be4d0bab6d6d
+  Sourcery: 9ef51b8777516f204d82996441f293813158d0d7
+
+PODFILE CHECKSUM: 078883817664a1b0e9d67e7f42d93de09858f3f1
+
+COCOAPODS: 1.5.3

@@ -1,0 +1,27 @@
+import Foundation
+import Require
+
+final internal class SakaiTestConfiguration {
+
+struct Settings {
+    let baseURL: URL
+    let username: String
+    let password: String
+    let siteId: String
+    let announcementId: String
+}
+
+static let pass = Settings(
+                            baseURL: URL(string:"{{ argument.baseURL }}").require(),
+                            username: "{{ argument.username }}",
+                            password: "{{ argument.password }}",
+                            siteId: "{{ argument.siteId }}",
+                            announcementId: "{{ argument.announcementId }}")
+
+static let fail = Settings(
+                            baseURL: URL(string:"https://example.com/failure").require(),
+                            username: "thisshouldfail",
+                            password: "thisshouldfail",
+                            siteId: "thisshouldfail",
+                            announcementId: "thisshouldfail")
+}
