@@ -1,6 +1,9 @@
 <h1 align="center">Sakai-iOS</h1>
 
 <p align="center">
+    <a href="https://travis-ci.org/github/alihen/Sakai-iOS">
+        <img src="https://travis-ci.org/alihen/Sakai-iOS.svg?branch=master" alt="Travis-CI" />
+    </a>
     <a href="https://cocoapods.org/pods/Sakai">
         <img src="https://img.shields.io/cocoapods/v/Sakai.svg" alt="CocoaPods" />
     </a>
@@ -65,7 +68,7 @@ Examples coming soon. Please refer to the test suite for end-to-end integration 
 ## Requirements
 
 - Swift 5
-- Tested on Sakai 19
+- Tested on Sakai 11,12 & 19
 
 ## Installation
 
