@@ -8,121 +8,97 @@
 import Foundation
 
 public class AnnouncementService {
-    public func getAnnouncementData(withID id: String, completion: @escaping (Result<Data>) -> Void) {
-        Sakai.shared.session.prepAuthedRoute { (sessionResult) in
-            if sessionResult.error != nil {
-                completion(.failure(sessionResult.error!))
+    public func getAnnouncement(withID id: String, completion: @escaping NetworkServiceResponse<SakaiAnnouncement>) {
+        SakaiAPIClient.shared.session.prepAuthedRoute { (sessionResult) in
+            if let authError = sessionResult.error {
+                completion(.failure(authError))
                 return
             }
 
             sakaiProvider.request(.announcement(id)) { result in
-                do {
-                    let response = try result.dematerialize()
-                    let data = response.data
-                    completion(.success(data))
-                    return
-                } catch {
-                    completion(.failure(error))
-                    return
-                }
-            }
-        }
-    }
+                switch result {
+                case .success(let response):
+                    do {
+                        let announcement: SakaiAnnouncement = try JSONDecoder().decode(SakaiAnnouncement.self, from: response.data)
+                        self.getAnnouncementSiteTitles(announcements: [announcement], completion: { (titleResults) in
+                            switch titleResults {
+                            case .success(let finalAnnouncements):
+                                guard let finalAnnouncement: SakaiAnnouncement = finalAnnouncements.first else {
+                                    completion(.failure(SakaiError.init(kind: .unknown, localizedDescription: nil)))
+                                    return
+                                }
 
-    public func getAnnouncement(withID id: String, completion: @escaping (Result<SakaiAnnouncement>) -> Void) {
-        self.getAnnouncementData(withID: id) { (result: Result<Data>) in
-            switch result {
-            case .success(let response):
-                do {
-                    let announcement: SakaiAnnouncement = try JSONDecoder().decode(SakaiAnnouncement.self, from: response)
-                    self.getAnnouncementSiteTitles(announcements: [announcement], completion: { (titleResults) in
-                        switch titleResults {
-                        case .success(let finalAnnouncements):
-                            guard let finalAnnouncement: SakaiAnnouncement = finalAnnouncements.first else {
-                                completion(.failure(NSError()))
+                                completion(.success(finalAnnouncement))
+                                return
+                            case .failure(let titleErrors):
+                                completion(.failure(titleErrors))
                                 return
                             }
+                        })
+                    } catch {
+                        let error = SakaiError.parse(result: result)
+                        completion(.failure(error))
+                        return
+                    }
 
-                            completion(.success(finalAnnouncement))
-                            return
-                        case .failure(let titleErrors):
-                            completion(.failure(titleErrors))
-                            return
-                        }
-                    })
-                } catch {
-                    completion(.failure(error))
+                case .failure:
+                    let sakaiError = SakaiError.parse(result: result)
+                    completion(.failure(sakaiError))
                     return
                 }
-
-            case .failure(let error):
-                completion(.failure(error))
-                return
             }
         }
     }
 
-    public func getRecentAnnouncementsData(completion: @escaping (Result<Data>) -> Void) {
-        Sakai.shared.session.prepAuthedRoute { (sessionResult) in
-            if sessionResult.error != nil {
-                completion(.failure(sessionResult.error!))
+    public func getRecentAnnouncements(completion: @escaping NetworkServiceResponse<[SakaiAnnouncement]>) {
+        SakaiAPIClient.shared.session.prepAuthedRoute { (sessionResult) in
+            if let authError = sessionResult.error {
+                completion(.failure(authError))
                 return
             }
 
             sakaiProvider.request(.announcementsUser("user")) { (result) in
-                do {
-                    let response = try result.dematerialize()
-                    let data = response.data
-                    completion(.success(data))
-                    return
-                } catch {
-                    completion(.failure(error))
+                switch result {
+                case .success(let response):
+                    do {
+                        let announcementCollection: SakaiAnnouncementCollection = try JSONDecoder().decode(SakaiAnnouncementCollection.self, from: response.data)
+                        let announcements: [SakaiAnnouncement] = announcementCollection.collection
+                        self.getAnnouncementSiteTitles(announcements: announcements, completion: { (titleResults) in
+                            switch titleResults {
+                            case .success(var finalAnnouncements):
+                                finalAnnouncements = finalAnnouncements.map({
+                                    var announcement: SakaiAnnouncement = $0
+                                    announcement.body = announcement.body?.stripHTML()
+                                    announcement.title = announcement.title?.trimmingCharacters(in: [" "])
+                                    return announcement
+                                })
+
+                                completion(.success(finalAnnouncements))
+                                return
+                            case .failure:
+                                let sakaiError = SakaiError.parse(result: result)
+                                completion(.failure(sakaiError))
+                                return
+                            }
+                        })
+                    } catch {
+
+                    }
+                case .failure:
+                    let sakaiError = SakaiError.parse(result: result)
+                    completion(.failure(sakaiError))
                     return
                 }
             }
         }
     }
 
-    public func getRecentAnnouncements(completion: @escaping (Result<[SakaiAnnouncement]>) -> Void) {
-        self.getRecentAnnouncementsData { (result: Result<Data>) in
-            switch result {
-            case .success(let response):
-                do {
-                    let announcementCollection: SakaiAnnouncementCollection = try JSONDecoder().decode(SakaiAnnouncementCollection.self, from: response)
-                    let announcements: [SakaiAnnouncement] = announcementCollection.collection
-                    self.getAnnouncementSiteTitles(announcements: announcements, completion: { (titleResults) in
-                        switch titleResults {
-                        case .success(var finalAnnouncements):
-                            finalAnnouncements = finalAnnouncements.map({
-                                var announcement: SakaiAnnouncement = $0
-                                announcement.body = announcement.body?.stripHTML()
-                                announcement.title = announcement.title?.trimmingCharacters(in: [" "])
-                                return announcement
-                            })
-
-                            completion(.success(finalAnnouncements))
-                            return
-                        case .failure(let titleErrors):
-                            completion(.failure(titleErrors))
-                            return
-                        }
-                    })
-                } catch {
-
-                }
-            case .failure(let error):
-                completion(.failure(error))
-                return
-            }
-        }
-    }
-
-    internal func getAnnouncementSiteTitles(announcements: [SakaiAnnouncement], completion: @escaping (Result<[SakaiAnnouncement]>) -> Void) {
+    internal func getAnnouncementSiteTitles(announcements: [SakaiAnnouncement], completion: @escaping NetworkServiceResponse<[SakaiAnnouncement]>) {
         var newAnnouncements: [SakaiAnnouncement] = []
         for var announcement in announcements {
             sakaiProvider.request(.site(announcement.siteId), completion: { (result) in
                 do {
-                    let response = try result.dematerialize()
+                    let response = try result.get()
                     let site = try response.map(SakaiSite.self)
                     announcement.displaySiteTitle = site.title
                     newAnnouncements.append(announcement)
@@ -132,7 +108,8 @@ public class AnnouncementService {
                         return
                     }
                 } catch {
-                    completion(.failure(error))
+                    let fail = SakaiError.parse(result: result)
+                    completion(.failure(fail))
                     return
                 }
             })

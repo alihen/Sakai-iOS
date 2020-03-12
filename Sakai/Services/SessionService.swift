@@ -9,93 +9,63 @@ import Foundation
 
 public class SessionService {
 
-    public func prepAuthedRoute(completion: @escaping (Result<SakaiSession?>) -> Void) {
-        if Sakai.shared.ensureUserIsAuthorized() {
+    public func prepAuthedRoute(completion: @escaping NetworkServiceResponse<SakaiSession?>) {
+        if SakaiAPIClient.shared.ensureUserIsAuthorized() {
             completion(.success(nil))
             return
         }
 
         guard
-            let username = Sakai.shared.username,
-            let password = Sakai.shared.password else {
+            let username = SakaiAPIClient.shared.username,
+            let password = SakaiAPIClient.shared.password else {
                 assertionFailure("Configure your Sakai instance with a configuration and login details before using the service.")
                 return
         }
 
         self.loginUser(username: username, password: password) { (sessionResult) in
-            if sessionResult.error != nil {
-                completion(.failure(sessionResult.error!))
+            if let authError = sessionResult.error {
+                completion(.failure(authError))
                 return
             }
+
             completion(.success(nil))
             return
         }
     }
 
-    public func loginUser(username: String, password: String, completion: @escaping (Result<SakaiSession?>) -> Void) {
+    public func loginUser(username: String, password: String, completion: @escaping NetworkServiceResponse<SakaiSession>) {
         sakaiProvider.request(.session(username, password)) { response in
-            if let responseError: Error = response.error {
-                completion(.failure(responseError))
+            let loginStatusCode = response.value?.statusCode
+            if loginStatusCode != 201 {
+                let error = SakaiError.init(kind: .client, code: loginStatusCode, localizedDescription: response.error?.errorDescription, title: "An error occurred", message: nil)
+                completion(.failure(error))
                 return
             }
 
+
             self.getSession(completion: { (sessionResult) in
-                if let sessionError: Error = sessionResult.error {
-                    completion(.failure(sessionError))
+                if sessionResult.error != nil {
+                    completion(sessionResult)
                     return
                 }
-                Sakai.shared.loggedInUserSession = sessionResult.result
-                Sakai.shared.username = username
-                Sakai.shared.password = password
-                completion(.success(sessionResult.result))
+
+                SakaiAPIClient.shared.loggedInUserSession = sessionResult.value
+                SakaiAPIClient.shared.username = username
+                SakaiAPIClient.shared.password = password
+                completion(sessionResult)
             })
         }
     }
 
-    public func getSession(completion: @escaping (Result<SakaiSession>) -> Void) {
+    public func getSession(completion: @escaping NetworkServiceResponse<SakaiSession>) {
         sakaiProvider.request(.sessionCurrent) { result in
-            do {
-                let response = try result.dematerialize()
-                let session = try response.map(SakaiSession.self)
-                completion(.success(session))
-                return
-            } catch {
-                completion(.failure(error))
-                return
-            }
+            completion(ResponseHelper.handle(SakaiSession.self, result: result))
         }
     }
 
-    public func getUserData(completion: @escaping (Result<Data>) -> Void) {
+    public func getUser(completion: @escaping NetworkServiceResponse<SakaiUser>) {
         sakaiProvider.request(.userCurrent) { result in
-            do {
-                let response = try result.dematerialize()
-                let data = response.data
-                completion(.success(data))
-                return
-            } catch {
-                completion(.failure(error))
-                return
-            }
-        }
-    }
-
-    public func getUser(completion: @escaping (Result<SakaiUser>) -> Void) {
-        self.getUserData { (result: Result<Data>) in
-            switch result {
-            case .success(let response):
-                do {
-                    let user = try JSONDecoder().decode(SakaiUser.self, from: response)
-                    completion(.success(user))
-                    return
-                } catch {
-                    completion(.failure(error))
-                    return
-                }
-            case .failure(let error):
-                completion(.failure(error))
-                return
-            }
+            completion(ResponseHelper.handle(SakaiUser.self, result: result))
         }
     }
 }

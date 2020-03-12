@@ -22,10 +22,10 @@ class SessionTests: QuickSpec {
             it("logs a user in") {
                 waitUntil(timeout: 20) { done in
                     let configuration = SakaiConfiguration(baseURL: SakaiTestConfiguration.pass.baseURL)
-                    Sakai.shared.start(configuration: configuration,
+                    SakaiAPIClient.shared.start(configuration: configuration,
                                        username: SakaiTestConfiguration.pass.username,
                                        password: SakaiTestConfiguration.pass.password)
-                    Sakai.shared.session.loginUser(username: SakaiTestConfiguration.pass.username, password: SakaiTestConfiguration.pass.password, completion: { (sessionResult) in
+                    SakaiAPIClient.shared.session.loginUser(username: SakaiTestConfiguration.pass.username, password: SakaiTestConfiguration.pass.password, completion: { (sessionResult) in
                         expect(sessionResult.error).to(beNil())
                         expect(sessionResult.result).toNot(beNil())
                         done()
