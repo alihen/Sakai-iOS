@@ -2,8 +2,8 @@
 # * https://www.objc.io/issues/6-build-tools/travis-ci/
 # * https://github.com/supermarin/xcpretty#usage
 
-osx_image: xcode9.3
-xcode_sdk: iphonesimulator11.3
+osx_image: xcode11.3
+xcode_sdk: iphonesimulator13.2
 language: swift
 cache: cocoapods
 podfile: Example/Podfile
@@ -18,5 +18,5 @@ jobs:
 # - stage: compile
 #      script: set -o pipefail && xcodebuild build -workspace Example/Sakai-Example.xcworkspace -scheme Sakai-Example -sdk iphonesimulator11.3 ONLY_ACTIVE_ARCH=NO | xcpretty
     - stage: test
-      script: set -o pipefail && xcodebuild test -enableCodeCoverage YES -destination 'platform=iOS Simulator,OS=11.3,name=iPhone 8' -workspace Example/Sakai-Example.xcworkspace -scheme Sakai-Example | xcpretty -c
+      script: set -o pipefail && xcodebuild test -enableCodeCoverage YES -destination 'platform=iOS Simulator,OS=13.3,name=iPhone 11' -workspace Example/Sakai-Example.xcworkspace -scheme Sakai-Example | xcpretty -c
       after_success: bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
