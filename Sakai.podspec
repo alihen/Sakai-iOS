@@ -19,14 +19,12 @@ Sakai-iOS is currently in Alpha and has limited support for the Sakai `/direct` 
   s.author = "Alastair Hendricks"
   s.social_media_url = "http://twitter.com/ali_hen"
 
-  s.platform = :ios, "10.0"
+  s.platform = :ios, "11.0"
 
   s.source = { :git => 'https://github.com/alihen/Sakai-iOS.git', :tag => s.version.to_s }
   s.source_files  = "Sakai/**/*.{swift}"
   
-  s.dependency "Moya", "11.0.0"
-  s.dependency "Alamofire", "~> 4.1"
-  s.dependency "Result", "~> 3.0"
-  s.swift_version = "4.0"
+  s.dependency "Moya", "13.0.1"
+  s.swift_version = "5.0"
 
 end

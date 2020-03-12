@@ -18,7 +18,7 @@ class SiteTest: QuickSpec {
             }
 
             let configuration = SakaiConfiguration(baseURL: SakaiTestConfiguration.pass.baseURL)
-            Sakai.shared.start(configuration: configuration,
+            SakaiAPIClient.shared.start(configuration: configuration,
                                username: SakaiTestConfiguration.pass.username,
                                password: SakaiTestConfiguration.pass.password)
         }
@@ -26,9 +26,9 @@ class SiteTest: QuickSpec {
         describe("site service") {
             it("returns a single site by ID") {
                 waitUntil(timeout: 20) { done in
-                    Sakai.shared.site.getSite(withID: SakaiTestConfiguration.pass.siteId, completion: { (siteResult) in
+                    SakaiAPIClient.shared.site.getSite(withID: SakaiTestConfiguration.pass.siteId, completion: { (siteResult) in
                         expect(siteResult.error).to(beNil())
-                        expect(siteResult.result?.id).toNot(beNil())
+                        expect(siteResult.value?.id).toNot(beNil())
                         done()
                     })
                 }
@@ -37,9 +37,9 @@ class SiteTest: QuickSpec {
             context("if the site id does note exist") {
                 it("fails to return a single site by ID") {
                     waitUntil(timeout: 20) { done in
-                        Sakai.shared.site.getSite(withID: SakaiTestConfiguration.fail.siteId, completion: { (siteResult) in
+                        SakaiAPIClient.shared.site.getSite(withID: SakaiTestConfiguration.fail.siteId, completion: { (siteResult) in
                             expect(siteResult.error).toNot(beNil())
-                            expect(siteResult.result).to(beNil())
+                            expect(siteResult.value).to(beNil())
                             done()
                         })
                     }
@@ -48,9 +48,9 @@ class SiteTest: QuickSpec {
 
             it("returns all the sites") {
                 waitUntil(timeout: 50) { done in
-                    Sakai.shared.site.getAllSites(completion: { (siteResults) in
+                    SakaiAPIClient.shared.site.getAllSites(completion: { (siteResults) in
                         expect(siteResults.error).to(beNil())
-                        expect(siteResults.result).toNot(beEmpty())
+                        expect(siteResults.value).toNot(beEmpty())
                         done()
                     })
                 }

@@ -1,29 +1,27 @@
 PODS:
-  - Alamofire (4.7.2)
-  - Moya (11.0.0):
-    - Moya/Core (= 11.0.0)
-  - Moya/Core (11.0.0):
+  - Alamofire (4.9.1)
+  - Moya (13.0.1):
+    - Moya/Core (= 13.0.1)
+  - Moya/Core (13.0.1):
     - Alamofire (~> 4.1)
-    - Result (~> 3.0)
-  - Nimble (7.1.1)
-  - Quick (1.3.0)
+    - Result (~> 4.1)
+  - Nimble (8.0.5)
+  - Quick (2.2.0)
   - Require (2.0.0)
-  - Result (3.2.4)
+  - Result (4.1.0)
   - Sakai (0.0.1):
-    - Alamofire (~> 4.1)
-    - Moya (= 11.0.0)
-    - Result (~> 3.0)
-  - Sourcery (0.13.1)
+    - Moya (= 13.0.1)
+  - Sourcery (0.17.0)
 
 DEPENDENCIES:
-  - Nimble (= 7.1.1)
-  - Quick (= 1.3.0)
+  - Nimble (= 8.0.5)
+  - Quick (= 2.2.0)
   - Require (= 2.0.0)
   - Sakai (from `../`)
-  - Sourcery (= 0.13.1)
+  - Sourcery (= 0.17.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://cdn.cocoapods.org/:
     - Alamofire
     - Moya
     - Nimble
@@ -37,15 +35,15 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
-  Moya: be29766339783963a70d1279d69c891ab3a1393c
-  Nimble: 391f07782af4b37914f9bd7b2ffbb952731b8202
-  Quick: 03278013f71aa05fe9ecabc94fbcc6835f1ee76f
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
+  Nimble: 4ab1aeb9b45553c75b9687196b0fa0713170a332
+  Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
   Require: f93abc18dda985f665465cf027cea7166455fb28
-  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
-  Sakai: bc222dc60d2575c97d6180ebcb45be4d0bab6d6d
-  Sourcery: 9ef51b8777516f204d82996441f293813158d0d7
+  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
+  Sakai: a5d48db24fc8850f2865e00a5b749bd2c916ff91
+  Sourcery: 3ed61be7c8a1218fce349266139379dba477efe0
 
-PODFILE CHECKSUM: 078883817664a1b0e9d67e7f42d93de09858f3f1
+PODFILE CHECKSUM: 20c025e7dfee2e108ea5691c02784ae9b712bef5
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.4

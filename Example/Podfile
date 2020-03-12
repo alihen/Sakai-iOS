@@ -1,4 +1,4 @@
-platform :ios, '10.0'
+platform :ios, '11.0'
 
 target 'Sakai-Example' do
   use_frameworks!
@@ -6,9 +6,9 @@ target 'Sakai-Example' do
 
   target 'Tests' do
     inherit! :search_paths
-    pod 'Sourcery', '0.13.1'
+    pod 'Sourcery', '0.17.0'
     pod 'Require', '2.0.0'
-    pod 'Quick', '1.3.0'
-    pod 'Nimble', '7.1.1'
+    pod 'Quick', '2.2.0'
+    pod 'Nimble', '8.0.5'
   end
 end

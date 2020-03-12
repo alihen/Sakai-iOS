@@ -6,8 +6,12 @@
 //
 
 import Foundation
+import Result
+import Moya
 
-final public class Sakai: NSObject {
+public typealias NetworkServiceResponse<T: Decodable> = (Result<T, SakaiError>) -> Void
+
+final public class SakaiAPIClient: NSObject {
 
     public let announcements: AnnouncementService = AnnouncementService()
     public let session: SessionService = SessionService()
@@ -18,9 +22,9 @@ final public class Sakai: NSObject {
     internal var password: String? = nil
     internal var baseURL: URL? = nil
 
-    public class var shared: Sakai {
+    public class var shared: SakaiAPIClient {
         struct Static {
-            static let instance: Sakai = Sakai()
+            static let instance: SakaiAPIClient = SakaiAPIClient()
         }
         return Static.instance
     }

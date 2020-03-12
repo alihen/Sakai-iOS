@@ -14,7 +14,7 @@ private extension String {
     }
 }
 
-public let sakaiProvider = MoyaProvider<SakaiAPI>(plugins: [])
+public let sakaiProvider = MoyaProvider<SakaiAPI>(plugins: [SakaiAPINetworkPlugin()])
 
 public enum SakaiAPI {
     case session(String, String)
@@ -40,7 +40,7 @@ extension SakaiAPI: TargetType {
     }
 
     public var baseURL: URL {
-        guard let url: URL = Sakai.shared.baseURL else {
+        guard let url: URL = SakaiAPIClient.shared.baseURL else {
             assertionFailure("Please define the base URL by providing the Sakai instance with a configuration.")
             return URL(string: "")!
         }
@@ -59,7 +59,7 @@ extension SakaiAPI: TargetType {
             return "user/current.json"
 
         case .announcement(let id):
-            return "/announcement/msg/\(id).json"
+            return "/announcement/\(id).json"
         case .announcementsSite(let siteId):
             return "/announcement/\(siteId).json"
         case .announcementsUser(let userId):
