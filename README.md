@@ -64,8 +64,8 @@ Examples coming soon. Please refer to the test suite for end-to-end integration 
 
 ## Requirements
 
-- Swift 4
-- Tested on Sakai 11 and Sakai 12
+- Swift 5
+- Tested on Sakai 19
 
 ## Installation
 
@@ -73,7 +73,7 @@ Sakai is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Sakai', '~> 0.0.1'
+pod 'Sakai', '~> 0.0.2'
 ```
 
 ## Author
