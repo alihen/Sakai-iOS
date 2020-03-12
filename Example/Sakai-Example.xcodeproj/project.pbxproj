@@ -291,6 +291,7 @@
 			);
 			name = "Generated Configuration (Sourcery)";
 			outputPaths = (
+				"${SRCROOT}/Tests/Generated/SakaiTestConfiguration.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
