@@ -234,10 +234,12 @@
 				TargetAttributes = {
 					222DA27620B1B05700A7A914 = {
 						CreatedOnToolsVersion = 9.3.1;
+						LastSwiftMigration = 1130;
 						TestTargetID = 22A7D47020B1853300FE4FC2;
 					};
 					22A7D47020B1853300FE4FC2 = {
 						CreatedOnToolsVersion = 9.3.1;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
@@ -434,7 +436,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.alihen.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sakai-Example.app/Sakai-Example";
 			};
@@ -454,7 +456,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.alihen.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sakai-Example.app/Sakai-Example";
 			};
@@ -588,7 +590,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "xyz.alihen.Sakai-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -607,7 +609,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "xyz.alihen.Sakai-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

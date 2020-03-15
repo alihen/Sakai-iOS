@@ -22,7 +22,7 @@ class ResponseHelper {
                 output = try response.map(decode, using: decoder)
             }
             return .success(output)
-        } catch let error as MoyaError where error is MoyaError {
+        } catch let error as MoyaError {
             let customError: SakaiError = SakaiError.parse(result: result, additional: error)
             return .failure(customError)
         } catch {

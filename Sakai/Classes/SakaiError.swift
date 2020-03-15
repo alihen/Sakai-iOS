@@ -39,18 +39,18 @@ public struct SakaiError: Error {
             return error
         }
 
-        var title: String?
-        var message: String?
+        let title = "An error occurred"
+        let message = result.error?.errorDescription
 
         switch statusCode {
         case 200..<300:
-            guard let moyaError: MoyaError = additional as? MoyaError  else {
+            guard let moyaError: MoyaError = additional  else {
                 error = SakaiError(kind: .unknown, code: statusCode, localizedDescription: nil, title: title, message: message)
                 return error
             }
 
             switch moyaError {
-            case MoyaError.objectMapping(let err, let response):
+            case MoyaError.objectMapping:
                 error = SakaiError(kind: .parsing, code: statusCode, localizedDescription: moyaError.localizedDescription, title: title, message: message)
             default:
                 error = SakaiError(kind: .unknown, code: statusCode, localizedDescription: nil, title: title, message: message)
