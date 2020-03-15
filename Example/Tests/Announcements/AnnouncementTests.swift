@@ -50,7 +50,6 @@ class AnnouncementTest: QuickSpec {
             it("returns the recent announcements") {
                 waitUntil(timeout: 20) { done in
                     SakaiAPIClient.shared.announcements.getRecentAnnouncements(completion: { (announcementResults) in
-                        print(announcementResults.value)
                         expect(announcementResults.error).to(beNil())
                         expect(announcementResults.value).toNot(beEmpty())
                         done()
