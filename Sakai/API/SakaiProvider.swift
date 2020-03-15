@@ -14,7 +14,7 @@ private extension String {
     }
 }
 
-public let sakaiProvider = MoyaProvider<SakaiAPI>(plugins: [SakaiAPINetworkPlugin()])
+public let sakaiProvider = MoyaProvider<SakaiAPI>(plugins: [SakaiAPINetworkPlugin(), SakaiAPICachePlugin()])
 
 public enum SakaiAPI {
     case session(String, String)
@@ -32,6 +32,12 @@ public enum SakaiAPI {
     case contentSite(String)
     case contentMy
     case contentUser(String)
+}
+
+extension SakaiAPI: CachePolicyGettable {
+    var cachePolicy: URLRequest.CachePolicy {
+        return .reloadIgnoringLocalCacheData
+    }
 }
 
 extension SakaiAPI: TargetType {
