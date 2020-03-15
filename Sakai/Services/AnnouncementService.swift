@@ -62,7 +62,7 @@ public class AnnouncementService {
                 case .success(let response):
                     do {
                         let announcementCollection: SakaiAnnouncementCollection = try JSONDecoder().decode(SakaiAnnouncementCollection.self, from: response.data)
-                        let announcements: [SakaiAnnouncement] = announcementCollection.collection
+                        let announcements: [SakaiAnnouncement] = announcementCollection.collection.sorted(by: { $0.createdOn > $1.createdOn })
                         self.getAnnouncementSiteTitles(announcements: announcements, completion: { (titleResults) in
                             switch titleResults {
                             case .success(var finalAnnouncements):
