@@ -36,7 +36,9 @@ public enum SakaiAPI {
 
 extension SakaiAPI: TargetType {
     public var headers: [String : String]? {
-        return nil
+        return [
+            "Pragma": "no-cache",
+            "User-Agent": "com.sakai.ios/\(RequestHelper.getFrameworkVersion())"]
     }
 
     public var baseURL: URL {
@@ -93,9 +95,9 @@ extension SakaiAPI: TargetType {
         case .session(let username, let password):
             return .requestParameters(parameters: ["_username" : username, "_password" : password], encoding: URLEncoding.default)
         case .announcementsUser:
-            return .requestParameters(parameters: ["n": "20", "d": "1000"], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["n": "100", "d": "1000"], encoding: URLEncoding.default)
         case .sites:
-            return .requestParameters(parameters: ["_limit": "100"], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["_limit": "300"], encoding: URLEncoding.default)
         default:
             return .requestPlain
         }
