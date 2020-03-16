@@ -17,6 +17,7 @@ private extension String {
 public let sakaiProvider = MoyaProvider<SakaiAPI>(plugins: [SakaiAPINetworkPlugin(), SakaiAPICachePlugin()])
 
 public enum SakaiAPI {
+    case legacyLogin(String, String)
     case session(String, String)
     case sessionCurrent
 
@@ -42,9 +43,17 @@ extension SakaiAPI: CachePolicyGettable {
 
 extension SakaiAPI: TargetType {
     public var headers: [String : String]? {
-        return [
+        switch self {
+        case .legacyLogin:
+            return [
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Pragma": "no-cache",
+                "User-Agent": "com.sakai.ios/\(RequestHelper.getFrameworkVersion())"]
+        default:
+            return [
             "Pragma": "no-cache",
             "User-Agent": "com.sakai.ios/\(RequestHelper.getFrameworkVersion())"]
+        }
     }
 
     public var baseURL: URL {
@@ -58,38 +67,40 @@ extension SakaiAPI: TargetType {
 
     public var path: String {
         switch self {
+        case .legacyLogin:
+            return "/portal/xlogin"
         case .session:
-            return "/session"
+            return "/direct/session"
         case .sessionCurrent:
-            return "/session/current.json"
+            return "/direct/session/current.json"
 
         case .userCurrent:
-            return "user/current.json"
+            return "/direct/user/current.json"
 
         case .announcement(let id):
-            return "/announcement/\(id).json"
+            return "/direct/announcement/\(id).json"
         case .announcementsSite(let siteId):
-            return "/announcement/\(siteId).json"
+            return "/direct/announcement/\(siteId).json"
         case .announcementsUser(let userId):
-            return "/announcement/\(userId).json"
+            return "/direct/announcement/\(userId).json"
 
         case .sites:
-            return "/site.json"
+            return "/direct/site.json"
         case .site(let id):
-            return "/site/\(id).json"
+            return "/direct/site/\(id).json"
 
         case .contentSite(let id):
-            return "/content/site/\(id).json"
+            return "/direct/content/site/\(id).json"
         case .contentMy:
-            return "/content/my.json"
+            return "/direct/content/my.json"
         case .contentUser(let eid): //Only admin type users will be able to view this content.
-            return "/content/user/\(eid).json"
+            return "/direct/content/user/\(eid).json"
         }
     }
 
     public var method: Moya.Method {
         switch self {
-        case .session:
+        case .session, .legacyLogin:
             return .post
         default:
             return .get
@@ -98,6 +109,8 @@ extension SakaiAPI: TargetType {
 
     public var task: Task {
         switch self {
+        case .legacyLogin(let username, let password):
+            return .requestParameters(parameters: ["eid" : username, "pw" : password], encoding: URLEncoding.default)
         case .session(let username, let password):
             return .requestParameters(parameters: ["_username" : username, "_password" : password], encoding: URLEncoding.default)
         case .announcementsUser:

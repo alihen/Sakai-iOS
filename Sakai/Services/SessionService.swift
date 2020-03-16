@@ -22,14 +22,21 @@ public class SessionService {
                 return
         }
 
-        self.loginUser(username: username, password: password) { (sessionResult) in
+        self.loginUser(username: username, password: password) { sessionResult in
             if let authError = sessionResult.error {
                 completion(.failure(authError))
                 return
             }
 
-            completion(.success(nil))
-            return
+            self.legacyLoginUser(username: username, password: password) { legacyLoginResult in
+                if let authError = legacyLoginResult.error {
+                    completion(.failure(authError))
+                    return
+                }
+
+                completion(.success(nil))
+                return
+            }
         }
     }
 
@@ -54,6 +61,29 @@ public class SessionService {
                 SakaiAPIClient.shared.password = password
                 completion(sessionResult)
             })
+        }
+    }
+
+    
+    public func legacyLoginUser(username: String, password: String, completion: @escaping NetworkServiceResponse<Bool>) {
+        sakaiProvider.request(.legacyLogin(username, password)) { result in
+            guard let statusCode = result.value?.statusCode else {
+                let error = SakaiError.init(kind: .client, localizedDescription: result.error?.localizedDescription)
+                completion(.failure(error))
+                return
+            }
+            switch statusCode {
+            case 200:
+                let error = SakaiError.init(kind: .client, localizedDescription: nil)
+                completion(.failure(error))
+                return
+            case 301, 302:
+                completion(.success(true))
+                return
+            default:
+                let error = SakaiError.init(kind: .unknown, code: statusCode, localizedDescription: nil, title: nil, message: nil)
+                completion(.failure(error))
+            }
         }
     }
 
