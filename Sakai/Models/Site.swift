@@ -45,7 +45,7 @@ public struct SakaiSite: Codable {
     public let shortDescription : String?
     //public let siteGroups : [String : Any]?
     //publiclet siteOwner : [String : Any]?
-    //public let sitePages : [String: String]
+    public let sitePages : [SitePage]?
     public let skin : String?
     public let softlyDeleted : Bool
     //public let softlyDeletedDate : Date?
