@@ -64,26 +64,17 @@ public class SessionService {
         }
     }
 
-    
     public func legacyLoginUser(username: String, password: String, completion: @escaping NetworkServiceResponse<Bool>) {
         sakaiProvider.request(.legacyLogin(username, password)) { result in
-            guard let statusCode = result.value?.statusCode else {
-                let error = SakaiError.init(kind: .client, localizedDescription: result.error?.localizedDescription)
+
+            if let error = result.error {
+                let error = SakaiError.init(kind: .unknown, localizedDescription: error.localizedDescription)
                 completion(.failure(error))
                 return
             }
-            switch statusCode {
-            case 200:
-                let error = SakaiError.init(kind: .client, localizedDescription: nil)
-                completion(.failure(error))
-                return
-            case 301, 302:
-                completion(.success(true))
-                return
-            default:
-                let error = SakaiError.init(kind: .unknown, code: statusCode, localizedDescription: nil, title: nil, message: nil)
-                completion(.failure(error))
-            }
+
+            completion(.success(true))
+            return
         }
     }
 

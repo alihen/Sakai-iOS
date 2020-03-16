@@ -110,7 +110,7 @@ extension SakaiAPI: TargetType {
     public var task: Task {
         switch self {
         case .legacyLogin(let username, let password):
-            return .requestParameters(parameters: ["eid" : username, "pw" : password], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["eid" : username, "pw" : password], encoding: URLEncoding.httpBody)
         case .session(let username, let password):
             return .requestParameters(parameters: ["_username" : username, "_password" : password], encoding: URLEncoding.default)
         case .announcementsUser:
