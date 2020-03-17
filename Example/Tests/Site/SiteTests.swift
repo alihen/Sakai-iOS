@@ -29,6 +29,7 @@ class SiteTest: QuickSpec {
                     SakaiAPIClient.shared.site.getSite(withID: SakaiTestConfiguration.pass.siteId, completion: { (siteResult) in
                         expect(siteResult.error).to(beNil())
                         expect(siteResult.value?.id).toNot(beNil())
+                        expect(siteResult.value?.sitePages).toNot(beEmpty())
                         done()
                     })
                 }
