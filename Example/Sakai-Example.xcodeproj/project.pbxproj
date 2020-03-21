@@ -19,6 +19,7 @@
 		22A7D47F20B1853400FE4FC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22A7D47D20B1853400FE4FC2 /* LaunchScreen.storyboard */; };
 		786CCF5E732D36B35328F0E3 /* Pods_Sakai_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB49205ECAE64E3A362AEA2E /* Pods_Sakai_Example.framework */; };
 		A4D54FDBE9469C766C752D6C /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D93F2CD5F4D411DA91FF7791 /* Pods_Tests.framework */; };
+		F205BC5524263E08009ECBA9 /* ContentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F205BC5424263E08009ECBA9 /* ContentTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		CE9464C6EDFB20DF90AEFDCC /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D93F2CD5F4D411DA91FF7791 /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC8EC2866A47714BB297448 /* Pods-Sakai-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sakai-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sakai-Example/Pods-Sakai-Example.debug.xcconfig"; sourceTree = "<group>"; };
+		F205BC5424263E08009ECBA9 /* ContentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 		222DA27820B1B05700A7A914 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				F205BC5324263DEB009ECBA9 /* Content */,
 				226D0E9720B617350071AF75 /* Site */,
 				226D0E9420B6154D0071AF75 /* Session */,
 				226D0E9020B60BC00071AF75 /* Announcements */,
@@ -169,6 +172,14 @@
 				22A7D48020B1853400FE4FC2 /* Info.plist */,
 			);
 			path = "Sakai-Example";
+			sourceTree = "<group>";
+		};
+		F205BC5324263DEB009ECBA9 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				F205BC5424263E08009ECBA9 /* ContentTests.swift */,
+			);
+			path = Content;
 			sourceTree = "<group>";
 		};
 		F7DD0C96A9C315094AC919EC /* Frameworks */ = {
@@ -297,7 +308,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$PODS_ROOT/Sourcery/bin/sourcery --templates ${SRCROOT}/${TARGETNAME}/Stencils/ --sources ${SRCROOT}/${TARGETNAME}/ --output ${SRCROOT}/Tests/Generated/ --args username=$SAKAI_TEST_USERNAME,password=$SAKAI_TEST_PASSWORD,baseURL=$SAKAI_TEST_BASE_URL,siteId=$SAKAI_TEST_SITE_ID,announcementId=$SAKAI_TEST_ANNOUNCEMENT_ID\n";
+			shellScript = "$PODS_ROOT/Sourcery/bin/sourcery --templates ${SRCROOT}/${TARGETNAME}/Stencils/ --sources ${SRCROOT}/${TARGETNAME}/ --output ${SRCROOT}/Tests/Generated/ --args username=$SAKAI_TEST_USERNAME,password=$SAKAI_TEST_PASSWORD,baseURL=$SAKAI_TEST_BASE_URL,siteId=$SAKAI_TEST_SITE_ID,announcementId=$SAKAI_TEST_ANNOUNCEMENT_ID,folderName=$SAKAI_TEST_FOLDER_NAME\n";
 		};
 		52BCF0D4F80CB891F65FD009 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -377,6 +388,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				226D0E9620B6155D0071AF75 /* SessionTests.swift in Sources */,
+				F205BC5524263E08009ECBA9 /* ContentTests.swift in Sources */,
 				226D0E9220B60BEC0071AF75 /* AnnouncementTests.swift in Sources */,
 				226D0E9920B617460071AF75 /* SiteTests.swift in Sources */,
 				2281065920B5D301003DC627 /* SakaiTestConfiguration.generated.swift in Sources */,

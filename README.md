@@ -59,6 +59,7 @@ export SAKAI_TEST_USERNAME=STUDENT001
 export SAKAI_TEST_PASSWORD=password
 export SAKAI_TEST_SITE_ID=a-test-site-id
 export SAKAI_TEST_ANNOUNCEMENT_ID=a-test-announcement-id-the-user-can-access
+export SAKAI_TEST_FOLDER_NAME=a-folder-name-in-the-test-sites-resources
 ```
 
 ## Examples

@@ -7,29 +7,46 @@
 
 import Foundation
 
-public struct SakaiContentCollection: Codable {
-    public let collection: [SakaiSite]
+public struct SakaiContentCollection: Decodable {
+    public let contentCollection: [SakaiContent]
+
+    enum CodingKeys: String, CodingKey {
+        case contentCollection = "content_collection"
+    }
 }
 
-public struct SakaiContent: Codable {
-    public let author : String
-    public let authorId : String
-    public let container : String
-    public let copyrightAlert : String?
-    public let description : String?
-    public let endDate : Date?
-    public let fromDate : Date?
-    public let modifiedDate : Date
-    public let numChildren : Int
-    public let quota : String?
-    public let size : Int64
-    public let title : String
-    public let type : String
-    public let url : URL
-    public let usage : String?
-    public let hidden : Bool
-    public let visible : Bool
-    public let entityReference : String
-    public let entityURL : URL
-    public let entityTitle : String
+public struct SakaiContent: Decodable {
+    public let created: Int
+    public let creator: String
+    public let description: String?
+    public let hidden: Bool
+    public let mimeType: String?
+    public let modified: Int
+    public let modifiedBy: String
+    public let name: String
+    public let priority: String
+    public let reference: String
+    public let resourceChildren: [SakaiContent]
+    public let resourceID: String
+    public let size: String?
+    public let type: String
+    public let url: URL
+
+    enum CodingKeys: String, CodingKey {
+        case created
+        case creator
+        case description
+        case hidden
+        case mimeType
+        case modified
+        case modifiedBy
+        case name
+        case priority
+        case reference
+        case resourceChildren
+        case resourceID = "resourceId"
+        case size
+        case type
+        case url
+    }
 }

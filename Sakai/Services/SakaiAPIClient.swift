@@ -16,6 +16,7 @@ final public class SakaiAPIClient: NSObject {
     public let announcements: AnnouncementService = AnnouncementService()
     public let session: SessionService = SessionService()
     public let site: SiteService = SiteService()
+    public let content: ContentService = ContentService()
     public internal(set) var loggedInUserSession: SakaiSession?
 
     internal var username: String? = nil
