@@ -21,7 +21,7 @@ DEPENDENCIES:
   - Sourcery (= 0.17.0)
 
 SPEC REPOS:
-  https://cdn.cocoapods.org/:
+  trunk:
     - Alamofire
     - Moya
     - Nimble
@@ -44,6 +44,6 @@ SPEC CHECKSUMS:
   Sakai: c619aa7a0451520079f12ae28756b3799878f2b3
   Sourcery: 3ed61be7c8a1218fce349266139379dba477efe0
 
-PODFILE CHECKSUM: 20c025e7dfee2e108ea5691c02784ae9b712bef5
+PODFILE CHECKSUM: ba6398a145f7e9499701056bc849528689fd0720
 
 COCOAPODS: 1.9.1

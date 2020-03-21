@@ -19,7 +19,7 @@ Sakai-iOS provides an easy way to build out a [Sakai LMS](https://github.com/sak
 ## How to use Sakai-iOS
 Initialize the Sakai instance with the instance configuration and a login details.
 ```swift
-let configuration = SakaiConfiguration(baseURL: URL(string: "https://example-sakai.com/direct")!)
+let configuration = SakaiConfiguration(baseURL: URL(string: "https://example-sakai.com")!)
 Sakai.shared.start(
     configuration: configuration,
     username: "STUDENT001",
@@ -54,21 +54,21 @@ You will be able to run the example project's test suite in order to test compat
 The variables which the tests use are taken from environmental variables from the machine. Ensure you set the following environmental variables in the environment you run the tests in.
 
 ```bash
-export SAKAI_TEST_BASE_URL=https://example-instance.com/direct
+export SAKAI_TEST_BASE_URL=https://example-instance.com
 export SAKAI_TEST_USERNAME=STUDENT001
 export SAKAI_TEST_PASSWORD=password
 export SAKAI_TEST_SITE_ID=a-test-site-id
 export SAKAI_TEST_ANNOUNCEMENT_ID=a-test-announcement-id-the-user-can-access
 ```
 
-## Example
+## Examples
 
-Examples coming soon. Please refer to the test suite for end-to-end integration tests.
+- [Sharing a session to a WKWebView](docs/sessions.md)
 
 ## Requirements
 
 - Swift 5
-- Tested on Sakai 11,12 & 19
+- Tested on Sakai 11, 12 & 19
 
 ## Installation
 

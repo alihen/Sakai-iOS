@@ -22,7 +22,7 @@ public class SessionService {
                 return
         }
 
-        self.loginUser(username: username, password: password) { (sessionResult) in
+        self.loginUser(username: username, password: password) { sessionResult in
             if let authError = sessionResult.error {
                 completion(.failure(authError))
                 return
@@ -53,6 +53,7 @@ public class SessionService {
                 SakaiAPIClient.shared.username = username
                 SakaiAPIClient.shared.password = password
                 completion(sessionResult)
+                return
             })
         }
     }
