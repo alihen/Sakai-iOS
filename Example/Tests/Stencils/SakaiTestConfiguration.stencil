@@ -9,6 +9,7 @@ struct Settings {
     let password: String
     let siteId: String
     let announcementId: String
+    let folderName: String
 }
 
 static let pass = Settings(
@@ -16,12 +17,14 @@ static let pass = Settings(
                             username: "{{ argument.username }}",
                             password: "{{ argument.password }}",
                             siteId: "{{ argument.siteId }}",
-                            announcementId: "{{ argument.announcementId }}")
+                            announcementId: "{{ argument.announcementId }}",
+                            folderName: "{{ argument.folderName }}")
 
 static let fail = Settings(
                             baseURL: URL(string:"https://example.com/failure").require(),
                             username: "thisshouldfail",
                             password: "thisshouldfail",
                             siteId: "thisshouldfail",
-                            announcementId: "thisshouldfail")
+                            announcementId: "thisshouldfail",
+                            folderName: "")
 }
