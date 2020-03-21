@@ -17,7 +17,6 @@ private extension String {
 public let sakaiProvider = MoyaProvider<SakaiAPI>(plugins: [SakaiAPINetworkPlugin(), SakaiAPICachePlugin()])
 
 public enum SakaiAPI {
-    case legacyLogin(String, String)
     case session(String, String)
     case sessionCurrent
 
@@ -43,17 +42,9 @@ extension SakaiAPI: CachePolicyGettable {
 
 extension SakaiAPI: TargetType {
     public var headers: [String : String]? {
-        switch self {
-        case .legacyLogin:
-            return [
-                "Content-Type": "application/x-www-form-urlencoded",
-                "Pragma": "no-cache",
-                "User-Agent": "com.sakai.ios/\(RequestHelper.getFrameworkVersion())"]
-        default:
-            return [
-            "Pragma": "no-cache",
-            "User-Agent": "com.sakai.ios/\(RequestHelper.getFrameworkVersion())"]
-        }
+        return [
+        "Pragma": "no-cache",
+        "User-Agent": "com.sakai.ios/\(RequestHelper.getFrameworkVersion())"]
     }
 
     public var baseURL: URL {
@@ -67,8 +58,6 @@ extension SakaiAPI: TargetType {
 
     public var path: String {
         switch self {
-        case .legacyLogin:
-            return "/portal/xlogin"
         case .session:
             return "/direct/session"
         case .sessionCurrent:
@@ -100,7 +89,7 @@ extension SakaiAPI: TargetType {
 
     public var method: Moya.Method {
         switch self {
-        case .session, .legacyLogin:
+        case .session:
             return .post
         default:
             return .get
@@ -109,8 +98,6 @@ extension SakaiAPI: TargetType {
 
     public var task: Task {
         switch self {
-        case .legacyLogin(let username, let password):
-            return .requestParameters(parameters: ["eid" : username, "pw" : password], encoding: URLEncoding.httpBody)
         case .session(let username, let password):
             return .requestParameters(parameters: ["_username" : username, "_password" : password], encoding: URLEncoding.default)
         case .announcementsUser:

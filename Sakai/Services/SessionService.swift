@@ -52,31 +52,9 @@ public class SessionService {
                 SakaiAPIClient.shared.loggedInUserSession = sessionResult.value
                 SakaiAPIClient.shared.username = username
                 SakaiAPIClient.shared.password = password
-
-                self.legacyLoginUser(username: username, password: password) { legacyLoginResult in
-                    if let authError = legacyLoginResult.error {
-                        completion(.failure(authError))
-                        return
-                    }
-
-                    completion(sessionResult)
-                    return
-                }
-            })
-        }
-    }
-
-    public func legacyLoginUser(username: String, password: String, completion: @escaping NetworkServiceResponse<Bool>) {
-        sakaiProvider.request(.legacyLogin(username, password)) { result in
-
-            if let error = result.error {
-                let error = SakaiError.init(kind: .unknown, localizedDescription: error.localizedDescription)
-                completion(.failure(error))
+                completion(sessionResult)
                 return
-            }
-
-            completion(.success(true))
-            return
+            })
         }
     }
 
