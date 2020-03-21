@@ -36,7 +36,7 @@ class ContentTest: QuickSpec {
 
             it("returns the resources for a folder/path") {
                 waitUntil(timeout: 20) { done in
-                    SakaiAPIClient.shared.content.getResources(withID: SakaiTestConfiguration.pass.siteId, path: SakaiTestConfiguration.pass.folderName) { resourceResult in
+                    SakaiAPIClient.shared.content.getResources(withID: SakaiTestConfiguration.pass.siteId, path: "Test Folder") { resourceResult in
                         expect(resourceResult.value?.contentCollection).toNot(beEmpty())
                         expect(resourceResult.error).to(beNil())
                         done()
