@@ -42,6 +42,7 @@ The following actions are currently supported:
 - Get Sites
 - Get Site by ID
 - Get Session
+- Get Site Resources
 
 Don't see an action that you need? First read our [docs](docs/VISION.md), and then submit an issue. If you feel like implementing the action yourself, go ahead and submit a PR. 🎉
 
