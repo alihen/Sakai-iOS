@@ -61,9 +61,9 @@ export SAKAI_TEST_SITE_ID=a-test-site-id
 export SAKAI_TEST_ANNOUNCEMENT_ID=a-test-announcement-id-the-user-can-access
 ```
 
-## Example
+## Examples
 
-Examples coming soon. Please refer to the test suite for end-to-end integration tests.
+- [Sharing a session to a WKWebView](docs/sessions.md)
 
 ## Requirements
 

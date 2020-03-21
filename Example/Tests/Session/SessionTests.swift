@@ -8,7 +8,6 @@
 import Quick
 import Nimble
 import Sakai
-import Alamofire
 
 class SessionTests: QuickSpec {
 
