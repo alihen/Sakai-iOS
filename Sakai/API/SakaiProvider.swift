@@ -43,8 +43,8 @@ extension SakaiAPI: CachePolicyGettable {
 extension SakaiAPI: TargetType {
     public var headers: [String : String]? {
         return [
-            "Pragma": "no-cache",
-            "User-Agent": "com.sakai.ios/\(RequestHelper.getFrameworkVersion())"]
+        "Pragma": "no-cache",
+        "User-Agent": "com.sakai.ios/\(RequestHelper.getFrameworkVersion())"]
     }
 
     public var baseURL: URL {
@@ -59,31 +59,31 @@ extension SakaiAPI: TargetType {
     public var path: String {
         switch self {
         case .session:
-            return "/session"
+            return "/direct/session"
         case .sessionCurrent:
-            return "/session/current.json"
+            return "/direct/session/current.json"
 
         case .userCurrent:
-            return "user/current.json"
+            return "/direct/user/current.json"
 
         case .announcement(let id):
-            return "/announcement/\(id).json"
+            return "/direct/announcement/\(id).json"
         case .announcementsSite(let siteId):
-            return "/announcement/\(siteId).json"
+            return "/direct/announcement/\(siteId).json"
         case .announcementsUser(let userId):
-            return "/announcement/\(userId).json"
+            return "/direct/announcement/\(userId).json"
 
         case .sites:
-            return "/site.json"
+            return "/direct/site.json"
         case .site(let id):
-            return "/site/\(id).json"
+            return "/direct/site/\(id).json"
 
         case .contentSite(let id):
-            return "/content/site/\(id).json"
+            return "/direct/content/site/\(id).json"
         case .contentMy:
-            return "/content/my.json"
+            return "/direct/content/my.json"
         case .contentUser(let eid): //Only admin type users will be able to view this content.
-            return "/content/user/\(eid).json"
+            return "/direct/content/user/\(eid).json"
         }
     }
 

@@ -32,23 +32,22 @@ class SessionTests: QuickSpec {
                     })
                 }
             }
-/*
+
             context("if the username or password is incorrect") {
                 it("fails to log a user in") {
-                    waitUntil(timeout: 10) { done in
+                    waitUntil(timeout: 20) { done in
                         let configuration = SakaiConfiguration(baseURL: SakaiTestConfiguration.pass.baseURL)
-                        Sakai.shared.start(configuration: configuration,
+                        SakaiAPIClient.shared.start(configuration: configuration,
                                            username: SakaiTestConfiguration.fail.username,
                                            password: SakaiTestConfiguration.fail.password)
-                        Sakai.shared.network.loginUser(username: SakaiTestConfiguration.fail.username, password: SakaiTestConfiguration.fail.password, completion: { (sessionResult) in
-                            expect(sessionResult.error).toNot(beNil())
-                            expect(sessionResult.result).to(beNil())
+                        SakaiAPIClient.shared.session.loginUser(username: SakaiTestConfiguration.fail.username, password: SakaiTestConfiguration.fail.password, completion: { (sessionResult) in
+                            expect(sessionResult.result.error).toNot(beNil())
+                            expect(sessionResult.result.value).to(beNil())
                             done()
                         })
                     }
                 }
             }
- */
         }
     }
 }
