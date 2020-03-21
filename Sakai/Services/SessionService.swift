@@ -27,16 +27,6 @@ public class SessionService {
                 completion(.failure(authError))
                 return
             }
-
-            self.legacyLoginUser(username: username, password: password) { legacyLoginResult in
-                if let authError = legacyLoginResult.error {
-                    completion(.failure(authError))
-                    return
-                }
-
-                completion(.success(nil))
-                return
-            }
         }
     }
 
@@ -59,7 +49,16 @@ public class SessionService {
                 SakaiAPIClient.shared.loggedInUserSession = sessionResult.value
                 SakaiAPIClient.shared.username = username
                 SakaiAPIClient.shared.password = password
-                completion(sessionResult)
+
+                self.legacyLoginUser(username: username, password: password) { legacyLoginResult in
+                    if let authError = legacyLoginResult.error {
+                        completion(.failure(authError))
+                        return
+                    }
+
+                    completion(sessionResult)
+                    return
+                }
             })
         }
     }
