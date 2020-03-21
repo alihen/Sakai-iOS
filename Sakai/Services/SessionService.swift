@@ -27,6 +27,9 @@ public class SessionService {
                 completion(.failure(authError))
                 return
             }
+
+            completion(.success(nil))
+            return
         }
     }
 
