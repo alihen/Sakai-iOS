@@ -29,7 +29,7 @@ public enum SakaiAPI {
     case sites
     case site(String)
 
-    case contentSite(String)
+    case contentSite(String, String?) // Site ID, Path
     case contentMy
     case contentUser(String)
 }
@@ -78,8 +78,11 @@ extension SakaiAPI: TargetType {
         case .site(let id):
             return "/direct/site/\(id).json"
 
-        case .contentSite(let id):
-            return "/direct/content/site/\(id).json"
+        case .contentSite(let id, let path):
+            if let path = path {
+                return "/direct/content/resources/\(id)/\(path).json"
+            }
+            return "/direct/content/resources/\(id).json"
         case .contentMy:
             return "/direct/content/my.json"
         case .contentUser(let eid): //Only admin type users will be able to view this content.

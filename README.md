@@ -42,6 +42,7 @@ The following actions are currently supported:
 - Get Sites
 - Get Site by ID
 - Get Session
+- Get Site Resources
 
 Don't see an action that you need? First read our [docs](docs/VISION.md), and then submit an issue. If you feel like implementing the action yourself, go ahead and submit a PR. 🎉
 
@@ -59,6 +60,7 @@ export SAKAI_TEST_USERNAME=STUDENT001
 export SAKAI_TEST_PASSWORD=password
 export SAKAI_TEST_SITE_ID=a-test-site-id
 export SAKAI_TEST_ANNOUNCEMENT_ID=a-test-announcement-id-the-user-can-access
+export SAKAI_TEST_FOLDER_NAME=a-folder-name-in-the-test-sites-resources
 ```
 
 ## Examples
