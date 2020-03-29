@@ -31,7 +31,7 @@ To ensure that the user's details are valid, log the user in.
 Sakai.shared.session.loginUser(
     username: "STUDENT001", 
     password: "password", 
-    completion: { (sessionResult) in
+    completion: { sessionResult in
                     // Get the result from sessionResult
     })
 ```
@@ -43,6 +43,7 @@ The following actions are currently supported:
 - Get Site by ID
 - Get Session
 - Get Site Resources
+- Get User Profile
 
 Don't see an action that you need? First read our [docs](docs/VISION.md), and then submit an issue. If you feel like implementing the action yourself, go ahead and submit a PR. 🎉
 
@@ -78,7 +79,7 @@ Sakai is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Sakai', '~> 0.0.2'
+pod 'Sakai', '~> 0.0.4'
 ```
 
 ## Author

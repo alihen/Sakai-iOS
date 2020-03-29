@@ -6,7 +6,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "Sakai"
-  s.version      = "0.0.3"
+  s.version      = "0.0.4"
   s.summary      = "Sakai-iOS provides an easy way to build out a Sakai LMS learning experience."
   s.description  = <<-DESC
 Sakai-iOS provides an easy way to build out a Sakai LMS learning experience within an iOS app.
