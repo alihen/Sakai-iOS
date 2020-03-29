@@ -33,6 +33,8 @@ class SessionTests: QuickSpec {
                 }
             }
 
+            
+
             context("if the username or password is incorrect") {
                 it("fails to log a user in") {
                     waitUntil(timeout: 20) { done in

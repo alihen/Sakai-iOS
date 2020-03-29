@@ -40,6 +40,13 @@ final public class SakaiAPIClient: NSObject {
         self.password = password
     }
 
+    public func teardown() {
+        self.baseURL = nil
+        self.username = nil
+        self.password = nil
+        self.loggedInUserSession = nil
+    }
+
     public func ensureUserIsAuthorized() -> Bool {
         guard let session: SakaiSession = loggedInUserSession else {
             return false
