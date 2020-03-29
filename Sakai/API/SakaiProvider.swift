@@ -21,6 +21,7 @@ public enum SakaiAPI {
     case sessionCurrent
 
     case userCurrent
+    case userProfile(String)
 
     case announcement(String)
     case announcementsSite(String)
@@ -62,22 +63,20 @@ extension SakaiAPI: TargetType {
             return "/direct/session"
         case .sessionCurrent:
             return "/direct/session/current.json"
-
         case .userCurrent:
             return "/direct/user/current.json"
-
+        case .userProfile(let uid):
+            return "/direct/profile/\(uid).json"
         case .announcement(let id):
             return "/direct/announcement/\(id).json"
         case .announcementsSite(let siteId):
             return "/direct/announcement/\(siteId).json"
         case .announcementsUser(let userId):
             return "/direct/announcement/\(userId).json"
-
         case .sites:
             return "/direct/site.json"
         case .site(let id):
             return "/direct/site/\(id).json"
-
         case .contentSite(let id, let path):
             if let path = path {
                 return "/direct/content/resources/\(id)/\(path).json"

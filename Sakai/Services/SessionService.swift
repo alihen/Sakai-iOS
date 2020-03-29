@@ -69,5 +69,18 @@ public class SessionService {
             completion(ResponseHelper.handle(SakaiUser.self, result: result))
         }
     }
+
+    public func getUserProfile(uid: String, completion: @escaping NetworkServiceResponse<SakaiUserProfile>) {
+        SakaiAPIClient.shared.session.prepAuthedRoute { (sessionResult) in
+        if let authError = sessionResult.error {
+            completion(.failure(authError))
+            return
+            }
+
+            sakaiProvider.request(.userProfile(uid)) { result in
+                completion(ResponseHelper.handle(SakaiUserProfile.self, result: result))
+            }
+        }
+    }
 }
 
