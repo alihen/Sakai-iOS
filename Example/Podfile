@@ -12,3 +12,14 @@ target 'Sakai-Example' do
     pod 'Nimble', '8.0.5'
   end
 end
+
+post_install do |installer_representation|
+    # Set Swift version to 5.0
+    installer_representation.pods_project.targets.each do |target|
+      if ['Result'].include? target.name
+        target.build_configurations.each do |config|
+          config.build_settings['SWIFT_VERSION'] = '5.0'
+        end
+      end
+    end
+end

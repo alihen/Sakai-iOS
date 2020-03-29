@@ -20,6 +20,8 @@
 		786CCF5E732D36B35328F0E3 /* Pods_Sakai_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB49205ECAE64E3A362AEA2E /* Pods_Sakai_Example.framework */; };
 		A4D54FDBE9469C766C752D6C /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D93F2CD5F4D411DA91FF7791 /* Pods_Tests.framework */; };
 		F205BC5524263E08009ECBA9 /* ContentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F205BC5424263E08009ECBA9 /* ContentTests.swift */; };
+		F286E39D243088650045E036 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F286E39C243088650045E036 /* UserTests.swift */; };
+		F286E3A22430904C0045E036 /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F286E3A12430904C0045E036 /* ClientTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		D93F2CD5F4D411DA91FF7791 /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC8EC2866A47714BB297448 /* Pods-Sakai-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sakai-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sakai-Example/Pods-Sakai-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		F205BC5424263E08009ECBA9 /* ContentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTests.swift; sourceTree = "<group>"; };
+		F286E39C243088650045E036 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
+		F286E3A12430904C0045E036 /* ClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,7 @@
 		222DA27820B1B05700A7A914 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				F286E3A02430903F0045E036 /* Client */,
 				F205BC5324263DEB009ECBA9 /* Content */,
 				226D0E9720B617350071AF75 /* Site */,
 				226D0E9420B6154D0071AF75 /* Session */,
@@ -113,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				226D0E9520B6155D0071AF75 /* SessionTests.swift */,
+				F286E39C243088650045E036 /* UserTests.swift */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -180,6 +186,14 @@
 				F205BC5424263E08009ECBA9 /* ContentTests.swift */,
 			);
 			path = Content;
+			sourceTree = "<group>";
+		};
+		F286E3A02430903F0045E036 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				F286E3A12430904C0045E036 /* ClientTests.swift */,
+			);
+			path = Client;
 			sourceTree = "<group>";
 		};
 		F7DD0C96A9C315094AC919EC /* Frameworks */ = {
@@ -387,6 +401,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F286E3A22430904C0045E036 /* ClientTests.swift in Sources */,
+				F286E39D243088650045E036 /* UserTests.swift in Sources */,
 				226D0E9620B6155D0071AF75 /* SessionTests.swift in Sources */,
 				F205BC5524263E08009ECBA9 /* ContentTests.swift in Sources */,
 				226D0E9220B60BEC0071AF75 /* AnnouncementTests.swift in Sources */,

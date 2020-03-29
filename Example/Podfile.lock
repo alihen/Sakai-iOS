@@ -9,7 +9,7 @@ PODS:
   - Quick (2.2.0)
   - Require (2.0.0)
   - Result (4.1.0)
-  - Sakai (0.0.2):
+  - Sakai (0.0.3):
     - Moya (= 13.0.1)
   - Sourcery (0.17.0)
 
@@ -41,9 +41,9 @@ SPEC CHECKSUMS:
   Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
   Require: f93abc18dda985f665465cf027cea7166455fb28
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
-  Sakai: c619aa7a0451520079f12ae28756b3799878f2b3
+  Sakai: 8bd788414f847ec8ce240ade2d69e60fc7f67c27
   Sourcery: 3ed61be7c8a1218fce349266139379dba477efe0
 
-PODFILE CHECKSUM: ba6398a145f7e9499701056bc849528689fd0720
+PODFILE CHECKSUM: 3103d968b0a774988ff4ed5dafb7ba263d6804b6
 
 COCOAPODS: 1.9.1
