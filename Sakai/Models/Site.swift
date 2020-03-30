@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct SakaiSiteCollection: Codable {
+public struct SakaiSiteCollection: Decodable {
     public let collection: [SakaiSite]
 
     enum CodingKeys: String, CodingKey {
@@ -15,7 +15,7 @@ public struct SakaiSiteCollection: Codable {
     }
 }
 
-public struct SakaiSite: Codable {
+public struct SakaiSite: Decodable {
     public let activeEdit : Bool
     public let contactEmail : String?
     public let contactName : String?

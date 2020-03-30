@@ -21,7 +21,7 @@ final public class SakaiAPIClient: NSObject {
 
     internal var username: String? = nil
     internal var password: String? = nil
-    internal var baseURL: URL? = nil
+    public internal(set) var baseURL: URL? = nil
 
     public class var shared: SakaiAPIClient {
         struct Static {
