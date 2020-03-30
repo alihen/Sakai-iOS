@@ -8,6 +8,7 @@
 import Foundation
 import Result
 import Moya
+import WebKit
 
 public typealias NetworkServiceResponse<T: Decodable> = (Result<T, SakaiError>) -> Void
 
@@ -21,7 +22,8 @@ final public class SakaiAPIClient: NSObject {
 
     internal var username: String? = nil
     internal var password: String? = nil
-    internal var baseURL: URL? = nil
+    public internal(set) var baseURL: URL? = nil
+    public var processPool: WKProcessPool = WKProcessPool()
 
     public class var shared: SakaiAPIClient {
         struct Static {
@@ -56,7 +58,7 @@ final public class SakaiAPIClient: NSObject {
 
         let timeElapsed = currentTimestamp-lastRefreshed
 
-        if timeElapsed >= 600  {
+        if timeElapsed >= 60  {
             return false
         }
 

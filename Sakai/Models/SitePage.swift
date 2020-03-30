@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct SitePage: Codable {
+public struct SitePage: Decodable {
     public let id: String
     public let layout: Int?
     public let activeEdit: Bool
@@ -21,6 +21,11 @@ public struct SitePage: Codable {
     public let layoutTitle: String?
     public let reference: String?
     public let titleCustom: Bool?
+    public var pagePath: String {
+        get {
+            return "/portal/page/\(id)"
+        }
+    }
 
     enum CodingKeys: String, CodingKey {
         case id
