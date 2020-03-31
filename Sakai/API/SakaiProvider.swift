@@ -31,6 +31,9 @@ public enum SakaiAPI {
     case contentUser(String)
     case chatChannels(String) // Site ID
     case chatMessages(String) // Channel ID
+    case calendarSite(String)
+    case calendarEvent(String, String) // Site ID, Event ID
+    case calendarMy
 }
 
 extension SakaiAPI: CachePolicyGettable {
@@ -88,6 +91,12 @@ extension SakaiAPI: TargetType {
             return "/direct/chat-channel.json"
         case .chatMessages:
             return "/direct/chat-message.json"
+        case .calendarSite(let siteId):
+            return "/direct/calendar/site/\(siteId).json"
+        case .calendarEvent(let siteId, let eventId):
+            return "/direct/calendar/site/\(siteId)/\(eventId).json"
+        case .calendarMy:
+            return "/direct/calendar/my.json"
         }
     }
 
