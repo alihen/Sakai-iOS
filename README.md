@@ -4,6 +4,9 @@
     <a href="https://travis-ci.org/github/alihen/Sakai-iOS">
         <img src="https://travis-ci.org/alihen/Sakai-iOS.svg?branch=master" alt="Travis-CI" />
     </a>
+    <a href="https://codecov.io/gh/alihen/Sakai-iOS">
+        <img src="https://codecov.io/gh/alihen/Sakai-iOS/branch/master/graph/badge.svg" />
+    </a>
     <a href="https://cocoapods.org/pods/Sakai">
         <img src="https://img.shields.io/cocoapods/v/Sakai.svg" alt="CocoaPods" />
     </a>
@@ -44,6 +47,8 @@ The following actions are currently supported:
 - Get Session
 - Get Site Resources
 - Get User Profile
+- Get Chat Channels
+- Get Chat Messages
 
 Don't see an action that you need? First read our [docs](docs/VISION.md), and then submit an issue. If you feel like implementing the action yourself, go ahead and submit a PR. 🎉
 
@@ -62,6 +67,7 @@ export SAKAI_TEST_PASSWORD=password
 export SAKAI_TEST_SITE_ID=a-test-site-id
 export SAKAI_TEST_ANNOUNCEMENT_ID=a-test-announcement-id-the-user-can-access
 export SAKAI_TEST_FOLDER_NAME=a-folder-name-in-the-test-sites-resources
+export SAKAI_TEST_CHAT_CHANNEL_ID=valid-chat-channel-id
 ```
 
 ## Examples

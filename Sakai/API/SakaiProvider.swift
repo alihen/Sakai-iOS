@@ -19,20 +19,18 @@ public let sakaiProvider = MoyaProvider<SakaiAPI>(plugins: [SakaiAPINetworkPlugi
 public enum SakaiAPI {
     case session(String, String)
     case sessionCurrent
-
     case userCurrent
     case userProfile(String)
-
     case announcement(String)
     case announcementsSite(String)
     case announcementsUser(String)
-
     case sites
     case site(String)
-
     case contentSite(String, String?) // Site ID, Path
     case contentMy
     case contentUser(String)
+    case chatChannels(String) // Site ID
+    case chatMessages(String) // Channel ID
 }
 
 extension SakaiAPI: CachePolicyGettable {
@@ -86,6 +84,10 @@ extension SakaiAPI: TargetType {
             return "/direct/content/my.json"
         case .contentUser(let eid): //Only admin type users will be able to view this content.
             return "/direct/content/user/\(eid).json"
+        case .chatChannels:
+            return "/direct/chat-channel.json"
+        case .chatMessages:
+            return "/direct/chat-message.json"
         }
     }
 
@@ -106,6 +108,10 @@ extension SakaiAPI: TargetType {
             return .requestParameters(parameters: ["n": "100", "d": "1000"], encoding: URLEncoding.default)
         case .sites:
             return .requestParameters(parameters: ["_limit": "300"], encoding: URLEncoding.default)
+        case .chatChannels(let siteId):
+            return .requestParameters(parameters: ["siteId": siteId], encoding: URLEncoding.default)
+        case .chatMessages(let channelId):
+            return .requestParameters(parameters: ["channelId": channelId], encoding: URLEncoding.default)
         default:
             return .requestPlain
         }

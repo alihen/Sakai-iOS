@@ -30,6 +30,13 @@ class SiteTest: QuickSpec {
                         expect(siteResult.error).to(beNil())
                         expect(siteResult.value?.id).toNot(beNil())
                         expect(siteResult.value?.sitePages).toNot(beEmpty())
+                        guard let sitePage = siteResult.value?.sitePages?.first else {
+                            fail("Unable to get site page")
+                            done()
+                            return
+                        }
+
+                        expect(sitePage.pagePath).to(equal("/portal/page/\(sitePage.id)"))
                         done()
                     })
                 }
