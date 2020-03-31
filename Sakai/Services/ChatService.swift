@@ -21,4 +21,17 @@ public class ChatService {
             }
         }
     }
+
+    public func getChatMessages(channelId: String, completion: @escaping NetworkServiceResponse<SakaiChatMessageCollection>) {
+        SakaiAPIClient.shared.session.prepAuthedRoute { (sessionResult) in
+            if let authError = sessionResult.error {
+                completion(.failure(authError))
+                return
+            }
+
+            sakaiProvider.request(.chatMessages(channelId)) { result in
+                completion(ResponseHelper.handle(SakaiChatMessageCollection.self, result: result))
+            }
+        }
+    }
 }

@@ -333,7 +333,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$PODS_ROOT/Sourcery/bin/sourcery --templates ${SRCROOT}/${TARGETNAME}/Stencils/ --sources ${SRCROOT}/${TARGETNAME}/ --output ${SRCROOT}/Tests/Generated/ --args username=$SAKAI_TEST_USERNAME,password=$SAKAI_TEST_PASSWORD,baseURL=$SAKAI_TEST_BASE_URL,siteId=$SAKAI_TEST_SITE_ID,announcementId=$SAKAI_TEST_ANNOUNCEMENT_ID,folderName=$SAKAI_TEST_FOLDER_NAME\n";
+			shellScript = "$PODS_ROOT/Sourcery/bin/sourcery --templates ${SRCROOT}/${TARGETNAME}/Stencils/ --sources ${SRCROOT}/${TARGETNAME}/ --output ${SRCROOT}/Tests/Generated/ --args username=$SAKAI_TEST_USERNAME,password=$SAKAI_TEST_PASSWORD,baseURL=$SAKAI_TEST_BASE_URL,siteId=$SAKAI_TEST_SITE_ID,announcementId=$SAKAI_TEST_ANNOUNCEMENT_ID,folderName=$SAKAI_TEST_FOLDER_NAME,chatChannelId=$SAKAI_TEST_CHAT_CHANNEL_ID\n";
 		};
 		52BCF0D4F80CB891F65FD009 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

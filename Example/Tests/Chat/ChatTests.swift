@@ -34,6 +34,24 @@ class ChatTests: QuickSpec {
                     }
                 }
             }
+
+            it("can retrieve chat messages for a channel") {
+                waitUntil(timeout: 20) { done in
+                    guard
+                        let channelId = SakaiTestConfiguration.pass.chatChannelId,
+                        channelId.count > 1 else {
+                            fail("Unable to get valid chatChannelId")
+                            done()
+                            return
+                    }
+                    SakaiAPIClient.shared.chat.getChatMessages(channelId: channelId) { result in
+                        expect(result.error).to(beNil())
+                        expect(result.value).toNot(beNil())
+                        expect(result.value?.collection).toNot(beEmpty())
+                        done()
+                    }
+                }
+            }
         }
     }
 }
