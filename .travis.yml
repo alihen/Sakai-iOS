@@ -19,4 +19,4 @@ jobs:
 #      script: set -o pipefail && xcodebuild build -workspace Example/Sakai-Example.xcworkspace -scheme Sakai-Example -sdk iphonesimulator11.3 ONLY_ACTIVE_ARCH=NO | xcpretty
     - stage: test
       script: set -o pipefail && xcodebuild test -enableCodeCoverage YES -destination 'platform=iOS Simulator,OS=13.3,name=iPhone 11' -workspace Example/Sakai-Example.xcworkspace -scheme Sakai-Example | xcpretty -c
-      after_success: bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN -Z -X s3
+      after_success: bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
