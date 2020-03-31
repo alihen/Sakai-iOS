@@ -22,6 +22,7 @@
 		F205BC5524263E08009ECBA9 /* ContentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F205BC5424263E08009ECBA9 /* ContentTests.swift */; };
 		F286E39D243088650045E036 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F286E39C243088650045E036 /* UserTests.swift */; };
 		F286E3A22430904C0045E036 /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F286E3A12430904C0045E036 /* ClientTests.swift */; };
+		F2FDDE392433C27700E594D9 /* ChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FDDE382433C27700E594D9 /* ChatTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		F205BC5424263E08009ECBA9 /* ContentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTests.swift; sourceTree = "<group>"; };
 		F286E39C243088650045E036 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		F286E3A12430904C0045E036 /* ClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTests.swift; sourceTree = "<group>"; };
+		F2FDDE382433C27700E594D9 /* ChatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 		222DA27820B1B05700A7A914 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				F2FDDE372433C26500E594D9 /* Chat */,
 				F286E3A02430903F0045E036 /* Client */,
 				F205BC5324263DEB009ECBA9 /* Content */,
 				226D0E9720B617350071AF75 /* Site */,
@@ -194,6 +197,14 @@
 				F286E3A12430904C0045E036 /* ClientTests.swift */,
 			);
 			path = Client;
+			sourceTree = "<group>";
+		};
+		F2FDDE372433C26500E594D9 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				F2FDDE382433C27700E594D9 /* ChatTests.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		F7DD0C96A9C315094AC919EC /* Frameworks */ = {
@@ -406,6 +417,7 @@
 				226D0E9620B6155D0071AF75 /* SessionTests.swift in Sources */,
 				F205BC5524263E08009ECBA9 /* ContentTests.swift in Sources */,
 				226D0E9220B60BEC0071AF75 /* AnnouncementTests.swift in Sources */,
+				F2FDDE392433C27700E594D9 /* ChatTests.swift in Sources */,
 				226D0E9920B617460071AF75 /* SiteTests.swift in Sources */,
 				2281065920B5D301003DC627 /* SakaiTestConfiguration.generated.swift in Sources */,
 			);
