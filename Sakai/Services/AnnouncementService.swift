@@ -58,7 +58,22 @@ public class AnnouncementService {
             }
 
             sakaiProvider.request(.announcementsSite(id)) { result in
-                completion(ResponseHelper.handle([SakaiAnnouncement].self, result: result, atKeyPath: "announcement_collection"))
+                let result = ResponseHelper.handle([SakaiAnnouncement].self, result: result, atKeyPath: "announcement_collection")
+
+                guard let announcements: [SakaiAnnouncement] = result.value else {
+                    completion(result)
+                    return
+                }
+
+                let strippedAnnouncements: [SakaiAnnouncement] = announcements.map({
+                    var announcement: SakaiAnnouncement = $0
+                    announcement.body = announcement.body?.stripHTML()
+                    announcement.title = announcement.title?.trimmingCharacters(in: [" "])
+                    return announcement
+                })
+
+                completion(.success(strippedAnnouncements))
+                return
             }
         }
     }
