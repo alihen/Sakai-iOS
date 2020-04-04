@@ -68,7 +68,7 @@ extension SakaiAPI: TargetType {
         case .announcement(let id):
             return "/direct/announcement/\(id).json"
         case .announcementsSite(let siteId):
-            return "/direct/announcement/\(siteId).json"
+            return "/direct/announcement/site/\(siteId).json"
         case .announcementsUser(let userId):
             return "/direct/announcement/\(userId).json"
         case .sites:

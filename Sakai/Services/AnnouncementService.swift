@@ -50,6 +50,19 @@ public class AnnouncementService {
         }
     }
 
+    public func getSiteAnnouncements(id: String, completion: @escaping NetworkServiceResponse<[SakaiAnnouncement]>) {
+        SakaiAPIClient.shared.session.prepAuthedRoute { (sessionResult) in
+            if let authError = sessionResult.error {
+                completion(.failure(authError))
+                return
+            }
+
+            sakaiProvider.request(.announcementsSite(id)) { result in
+                completion(ResponseHelper.handle([SakaiAnnouncement].self, result: result, atKeyPath: "announcement_collection"))
+            }
+        }
+    }
+
     public func getRecentAnnouncements(completion: @escaping NetworkServiceResponse<[SakaiAnnouncement]>) {
         SakaiAPIClient.shared.session.prepAuthedRoute { (sessionResult) in
             if let authError = sessionResult.error {
