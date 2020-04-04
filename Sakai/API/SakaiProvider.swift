@@ -68,7 +68,7 @@ extension SakaiAPI: TargetType {
         case .announcement(let id):
             return "/direct/announcement/\(id).json"
         case .announcementsSite(let siteId):
-            return "/direct/announcement/\(siteId).json"
+            return "/direct/announcement/site/\(siteId).json"
         case .announcementsUser(let userId):
             return "/direct/announcement/\(userId).json"
         case .sites:
@@ -105,9 +105,9 @@ extension SakaiAPI: TargetType {
         case .session(let username, let password):
             return .requestParameters(parameters: ["_username" : username, "_password" : password], encoding: URLEncoding.default)
         case .announcementsUser:
-            return .requestParameters(parameters: ["n": "100", "d": "1000"], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["n": "50", "d": "1000"], encoding: URLEncoding.default)
         case .sites:
-            return .requestParameters(parameters: ["_limit": "300"], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["_limit": "100"], encoding: URLEncoding.default)
         case .chatChannels(let siteId):
             return .requestParameters(parameters: ["siteId": siteId], encoding: URLEncoding.default)
         case .chatMessages(let channelId):
