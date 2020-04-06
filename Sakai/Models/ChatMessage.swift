@@ -16,19 +16,24 @@ public struct SakaiChatMessageCollection: Codable {
 }
 
 public struct SakaiChatMessage: Codable {
-    let body: String
-    let chatChannelID: String
-    let context: String
-    let id: String
-    let messageDate: Int
-    let messageDateString: String?
-    let owner: String
-    let ownerDisplayID: String
-    let ownerDisplayName: String
-    let removeable: Bool
-    let entityReference: String
-    let entityURL: URL
-    let entityID: String
+    public let body: String
+    public let chatChannelID: String
+    public let context: String
+    public let id: String
+    public let messageDate: Int
+    public let messageDateString: String?
+    public let owner: String
+    public let ownerDisplayID: String
+    public let ownerDisplayName: String
+    public let removeable: Bool
+    public let entityReference: String
+    public let entityURL: URL
+    public let entityID: String
+    public var avatarPath: String {
+        get {
+            return "/direct/profile/\(owner)/image.jpg"
+        }
+    }
 
     enum CodingKeys: String, CodingKey {
         case body

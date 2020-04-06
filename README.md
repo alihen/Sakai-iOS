@@ -50,6 +50,7 @@ The following actions are currently supported:
 - Get User Profile
 - Get Chat Channels
 - Get Chat Messages
+- Post Chat Messages
 
 Don't see an action that you need? First read our [docs](docs/VISION.md), and then submit an issue. If you feel like implementing the action yourself, go ahead and submit a PR. 🎉
 

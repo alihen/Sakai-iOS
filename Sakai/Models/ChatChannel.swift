@@ -16,16 +16,16 @@ public struct SakaiChatChannelCollection: Codable {
 }
 
 public struct SakaiChatChannel: Codable {
-    let context: String
-    let description: String?
-    let id: String
-    let placement: String?
-    let title: String
-    let defaultForContext: Bool
-    let entityReference: String
-    let entityURL: URL
-    let entityID: String
-    let entityTitle: String
+    public let context: String
+    public let description: String?
+    public let id: String
+    public let placement: String?
+    public let title: String
+    public let defaultForContext: Bool
+    public let entityReference: String
+    public let entityURL: URL
+    public let entityID: String
+    public let entityTitle: String
 
     enum CodingKeys: String, CodingKey {
         case context
