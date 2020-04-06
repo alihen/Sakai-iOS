@@ -34,4 +34,17 @@ public class ChatService {
             }
         }
     }
+
+    public func postChatMessage(channelId: String, body: String, completion: @escaping NetworkServiceResponse<String>) {
+        SakaiAPIClient.shared.session.prepAuthedRoute { (sessionResult) in
+            if let authError = sessionResult.error {
+                completion(.failure(authError))
+                return
+            }
+
+            sakaiProvider.request(.postChatMessage(channelId, body)) { result in
+                completion(ResponseHelper.handle(String.self, result: result))
+            }
+        }
+    }
 }

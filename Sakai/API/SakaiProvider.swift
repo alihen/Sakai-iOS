@@ -31,6 +31,7 @@ public enum SakaiAPI {
     case contentUser(String)
     case chatChannels(String) // Site ID
     case chatMessages(String) // Channel ID
+    case postChatMessage(String, String) // Channel ID, Body
 }
 
 extension SakaiAPI: CachePolicyGettable {
@@ -88,12 +89,14 @@ extension SakaiAPI: TargetType {
             return "/direct/chat-channel.json"
         case .chatMessages:
             return "/direct/chat-message.json"
+        case .postChatMessage:
+            return "/direct/chat-message/new"
         }
     }
 
     public var method: Moya.Method {
         switch self {
-        case .session:
+        case .session, .postChatMessage:
             return .post
         default:
             return .get
@@ -112,6 +115,8 @@ extension SakaiAPI: TargetType {
             return .requestParameters(parameters: ["siteId": siteId], encoding: URLEncoding.default)
         case .chatMessages(let channelId):
             return .requestParameters(parameters: ["channelId": channelId, "items": "1000"], encoding: URLEncoding.default)
+        case .postChatMessage(let channelId, let body):
+            return .requestParameters(parameters: ["chatChannelId": channelId, "body": body], encoding: URLEncoding.default)
         default:
             return .requestPlain
         }
