@@ -31,7 +31,7 @@ public struct SakaiChatMessage: Codable {
     public let entityID: String
     public var avatarPath: String {
         get {
-            return "/direct/profileClassic/\(owner)/image.jpg"
+            return "/direct/profile/\(owner)/image.jpg"
         }
     }
 
