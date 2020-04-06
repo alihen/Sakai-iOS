@@ -111,7 +111,7 @@ extension SakaiAPI: TargetType {
         case .chatChannels(let siteId):
             return .requestParameters(parameters: ["siteId": siteId], encoding: URLEncoding.default)
         case .chatMessages(let channelId):
-            return .requestParameters(parameters: ["channelId": channelId], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["channelId": channelId, "items": "500"], encoding: URLEncoding.default)
         default:
             return .requestPlain
         }
