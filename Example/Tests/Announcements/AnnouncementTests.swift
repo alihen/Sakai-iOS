@@ -56,6 +56,16 @@ class AnnouncementTest: QuickSpec {
                     })
                 }
             }
+
+            it("returns the announcements for a site") {
+                waitUntil(timeout: 20) { done in
+                    SakaiAPIClient.shared.announcements.getSiteAnnouncements(id: SakaiTestConfiguration.pass.siteId, completion: { (announcementResults) in
+                        expect(announcementResults.error).to(beNil())
+                        expect(announcementResults.value).toNot(beEmpty())
+                        done()
+                    })
+                }
+            }
         }
     }
 }

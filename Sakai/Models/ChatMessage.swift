@@ -29,6 +29,11 @@ public struct SakaiChatMessage: Codable {
     public let entityReference: String
     public let entityURL: URL
     public let entityID: String
+    public var avatarPath: String {
+        get {
+            return "/direct/profile/\(owner)/image.jpg"
+        }
+    }
 
     enum CodingKeys: String, CodingKey {
         case body
