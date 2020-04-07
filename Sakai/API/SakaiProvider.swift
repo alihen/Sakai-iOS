@@ -97,7 +97,7 @@ extension SakaiAPI: TargetType {
         case .calendarSite(let siteId):
             return "/direct/calendar/site/\(siteId).json"
         case .calendarEvent(let siteId, let eventId):
-            return "/direct/calendar/site/\(siteId)/\(eventId).json"
+            return "/direct/calendar/event/\(siteId)/\(eventId).json"
         case .calendarMy:
             return "/direct/calendar/my.json"
         }

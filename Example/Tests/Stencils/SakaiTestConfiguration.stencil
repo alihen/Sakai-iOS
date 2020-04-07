@@ -10,7 +10,8 @@ struct Settings {
     let siteId: String
     let announcementId: String
     let folderName: String
-    let chatChannelId: String?
+    let chatChannelId: String
+    let eventId: String
 }
 
 static let pass = Settings(
@@ -20,7 +21,8 @@ static let pass = Settings(
                             siteId: "{{ argument.siteId }}",
                             announcementId: "{{ argument.announcementId }}",
                             folderName: "{{ argument.folderName }}",
-                            chatChannelId: "{{ argument.chatChannelId }}")
+                            chatChannelId: "{{ argument.chatChannelId }}",
+                            eventId: "{{ argument.eventId }}")
 
 static let fail = Settings(
                             baseURL: URL(string:"https://example.com/failure").require(),
@@ -28,6 +30,7 @@ static let fail = Settings(
                             password: "thisshouldfail",
                             siteId: "thisshouldfail",
                             announcementId: "thisshouldfail",
-                            folderName: "",
-                            chatChannelId: nil)
+                            folderName: "thisshouldfail",
+                            chatChannelId: "thisshouldfail",
+                            eventId: "thisshouldfail")
 }
