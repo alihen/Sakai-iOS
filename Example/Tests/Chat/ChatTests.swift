@@ -13,7 +13,7 @@ class ChatTests: QuickSpec {
 
     override func spec() {
         beforeSuite {
-            if (SakaiTestConfiguration.pass.baseURL.absoluteString == "1") {
+            if (SakaiTestConfiguration.pass.baseURL.absoluteString == "1" || SakaiTestConfiguration.pass.chatChannelId == "1") {
                 fail("Please setup your Test environmental variables.")
             }
 
@@ -37,17 +37,17 @@ class ChatTests: QuickSpec {
 
             it("can retrieve chat messages for a channel") {
                 waitUntil(timeout: 20) { done in
-                    guard
-                        let channelId = SakaiTestConfiguration.pass.chatChannelId,
-                        channelId.count > 1 else {
-                            fail("Unable to get valid chatChannelId")
-                            done()
-                            return
-                    }
-                    SakaiAPIClient.shared.chat.getChatMessages(channelId: channelId) { result in
+                    SakaiAPIClient.shared.chat.getChatMessages(channelId: SakaiTestConfiguration.pass.chatChannelId) { result in
                         expect(result.error).to(beNil())
                         expect(result.value).toNot(beNil())
                         expect(result.value?.collection).toNot(beEmpty())
+                        guard let chatMessage = result.value?.collection.first else {
+                            fail("Unable to get chat message")
+                            done()
+                            return
+                        }
+
+                        expect(chatMessage.avatarPath).to(equal("/direct/profile/\(chatMessage.owner)/image.jpg"))
                         done()
                     }
                 }
