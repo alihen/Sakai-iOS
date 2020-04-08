@@ -54,6 +54,9 @@ The following actions are currently supported:
 - Get Site Calendar
 - Get Calendar Events
 - Get User Calendar
+- Get Site Assginments
+- Get Single Assignment
+- Get User Assignments
 
 Don't see an action that you need? First read our [docs](docs/VISION.md), and then submit an issue. If you feel like implementing the action yourself, go ahead and submit a PR. 🎉
 
@@ -74,6 +77,7 @@ export SAKAI_TEST_ANNOUNCEMENT_ID=a-test-announcement-id-the-user-can-access
 export SAKAI_TEST_FOLDER_NAME=a-folder-name-in-the-test-sites-resources
 export SAKAI_TEST_CHAT_CHANNEL_ID=valid-chat-channel-id
 export SAKAI_TEST_EVENT_ID=valid-calendar-event-id
+export SAKAI_TEST_ASSIGNMENT_ID=valid-assignment-id
 ```
 
 ## Examples
@@ -91,7 +95,7 @@ Sakai is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Sakai', '~> 0.0.5'
+pod 'Sakai', '~> 0.0.6'
 ```
 
 ## Author
