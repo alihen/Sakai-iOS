@@ -35,6 +35,9 @@ public enum SakaiAPI {
     case calendarSite(String)
     case calendarEvent(String, String) // Site ID, Event ID
     case calendarMy
+    case assignmentSite(String)
+    case assignmentItem(String)
+    case assignmentMy
 }
 
 extension SakaiAPI: CachePolicyGettable {
@@ -100,6 +103,12 @@ extension SakaiAPI: TargetType {
             return "/direct/calendar/event/\(siteId)/\(eventId).json"
         case .calendarMy:
             return "/direct/calendar/my.json"
+        case .assignmentSite(let siteId):
+            return "/direct/assignment/site/\(siteId).json"
+        case .assignmentItem(let assignmentId):
+            return "/direct/assignment/item/\(assignmentId).json"
+        case .assignmentMy:
+            return "/direct/assignment/my.json"
         }
     }
 

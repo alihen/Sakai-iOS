@@ -23,6 +23,7 @@
 		F286E39D243088650045E036 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F286E39C243088650045E036 /* UserTests.swift */; };
 		F286E3A22430904C0045E036 /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F286E3A12430904C0045E036 /* ClientTests.swift */; };
 		F2C6AED4243CB36B0038B355 /* CalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C6AED3243CB36B0038B355 /* CalendarTests.swift */; };
+		F2C6AEDD243DB63B0038B355 /* AssignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C6AEDC243DB63B0038B355 /* AssignmentTests.swift */; };
 		F2FDDE392433C27700E594D9 /* ChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FDDE382433C27700E594D9 /* ChatTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 		F286E39C243088650045E036 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		F286E3A12430904C0045E036 /* ClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTests.swift; sourceTree = "<group>"; };
 		F2C6AED3243CB36B0038B355 /* CalendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTests.swift; sourceTree = "<group>"; };
+		F2C6AEDC243DB63B0038B355 /* AssignmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentTests.swift; sourceTree = "<group>"; };
 		F2FDDE382433C27700E594D9 /* ChatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,6 +100,7 @@
 		222DA27820B1B05700A7A914 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				F2C6AEDB243DB62C0038B355 /* Assignment */,
 				F2C6AED2243CB3590038B355 /* Calendar */,
 				F2FDDE372433C26500E594D9 /* Chat */,
 				F286E3A02430903F0045E036 /* Client */,
@@ -208,6 +211,14 @@
 				F2C6AED3243CB36B0038B355 /* CalendarTests.swift */,
 			);
 			path = Calendar;
+			sourceTree = "<group>";
+		};
+		F2C6AEDB243DB62C0038B355 /* Assignment */ = {
+			isa = PBXGroup;
+			children = (
+				F2C6AEDC243DB63B0038B355 /* AssignmentTests.swift */,
+			);
+			path = Assignment;
 			sourceTree = "<group>";
 		};
 		F2FDDE372433C26500E594D9 /* Chat */ = {
@@ -344,7 +355,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$PODS_ROOT/Sourcery/bin/sourcery --templates ${SRCROOT}/${TARGETNAME}/Stencils/ --sources ${SRCROOT}/${TARGETNAME}/ --output ${SRCROOT}/Tests/Generated/ --args username=$SAKAI_TEST_USERNAME,password=$SAKAI_TEST_PASSWORD,baseURL=$SAKAI_TEST_BASE_URL,siteId=$SAKAI_TEST_SITE_ID,announcementId=$SAKAI_TEST_ANNOUNCEMENT_ID,folderName=$SAKAI_TEST_FOLDER_NAME,chatChannelId=$SAKAI_TEST_CHAT_CHANNEL_ID,eventId=$SAKAI_TEST_EVENT_ID\n";
+			shellScript = "$PODS_ROOT/Sourcery/bin/sourcery --templates ${SRCROOT}/${TARGETNAME}/Stencils/ --sources ${SRCROOT}/${TARGETNAME}/ --output ${SRCROOT}/Tests/Generated/ --args username=$SAKAI_TEST_USERNAME,password=$SAKAI_TEST_PASSWORD,baseURL=$SAKAI_TEST_BASE_URL,siteId=$SAKAI_TEST_SITE_ID,announcementId=$SAKAI_TEST_ANNOUNCEMENT_ID,folderName=$SAKAI_TEST_FOLDER_NAME,chatChannelId=$SAKAI_TEST_CHAT_CHANNEL_ID,eventId=$SAKAI_TEST_EVENT_ID,assignmentId=$SAKAI_TEST_ASSIGNMENT_ID\n";
 		};
 		52BCF0D4F80CB891F65FD009 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -429,6 +440,7 @@
 				F205BC5524263E08009ECBA9 /* ContentTests.swift in Sources */,
 				F2C6AED4243CB36B0038B355 /* CalendarTests.swift in Sources */,
 				226D0E9220B60BEC0071AF75 /* AnnouncementTests.swift in Sources */,
+				F2C6AEDD243DB63B0038B355 /* AssignmentTests.swift in Sources */,
 				F2FDDE392433C27700E594D9 /* ChatTests.swift in Sources */,
 				226D0E9920B617460071AF75 /* SiteTests.swift in Sources */,
 				2281065920B5D301003DC627 /* SakaiTestConfiguration.generated.swift in Sources */,
