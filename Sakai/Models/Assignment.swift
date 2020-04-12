@@ -34,7 +34,7 @@ public struct SakaiAssignmentItem: Decodable {
     public let openTime: SakaiAssignmentTime
     public let openTimeString: String
     public let position: Int
-    public let section: String
+    public let section: String?
     public let status: String
     public let submissionType: String
     public let timeCreated: SakaiAssignmentTime
