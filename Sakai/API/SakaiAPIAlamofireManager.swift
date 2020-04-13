@@ -12,8 +12,8 @@ final public class SakaiAPIAlamofireManager: Alamofire.SessionManager {
     static let sharedManager: SakaiAPIAlamofireManager = {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = Alamofire.SessionManager.defaultHTTPHeaders
-        configuration.timeoutIntervalForRequest = 20
-        configuration.timeoutIntervalForResource = 20
+        configuration.timeoutIntervalForRequest = 10
+        configuration.timeoutIntervalForResource = 10
         configuration.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
         return SakaiAPIAlamofireManager(configuration: configuration)
     }()
