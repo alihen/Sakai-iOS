@@ -6,11 +6,11 @@ I would like Sakai-iOS to provide institutions and students with a seamless expe
 
 - **Support for a majority of Sakai types:** Some Sakai types still need to be implemented, namely:
 
-    - Resources (Content)
-    - Assignments
-    - Calendar
-    - Chat
-    - A generic fallback for other tools that cannot be supported due to API constraints.
+    - Resources (Content) ✅
+    - Assignments ✅
+    - Calendar ✅
+    - Chat ✅
+    - A generic fallback for other tools that cannot be supported due to API constraints. ✅
 - **Easy integration testing for institutions:** Integration tests should be easy and comprehensive.
 - **Subspec providing UIs for some screens:** The project should provide a CocoaPod subspec that makes integration into an iOS app seamless with a pre-built UI.
 

@@ -6,11 +6,10 @@
 Pod::Spec.new do |s|
 
   s.name         = "Sakai"
-  s.version      = "0.0.6"
+  s.version      = "0.1.0"
   s.summary      = "Sakai-iOS provides an easy way to build out a Sakai LMS learning experience."
   s.description  = <<-DESC
 Sakai-iOS provides an easy way to build out a Sakai LMS learning experience within an iOS app.
-Sakai-iOS is currently in Alpha and has limited support for the Sakai `/direct` API. Refer to the docs and issues for more informations.
                     DESC
 
   s.homepage     = "https://github.com/alihen/Sakai-iOS"

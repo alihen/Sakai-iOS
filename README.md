@@ -17,7 +17,7 @@
 
 Sakai-iOS provides an easy way to build out a [Sakai LMS](https://github.com/sakaiproject/sakai) learning experience within an iOS app.
 
-**Sakai-iOS is currently in Alpha and has limited support for the Sakai `/direct` API. Refer to the [docs](docs/VISION.md) and issues for more informations.**
+**Want to see Sakai-iOS in action? Download [Nounce - Sakai e-Learning on the Go](https://apps.apple.com/app/id1505085542)**
 
 ## How to use Sakai-iOS
 Initialize the Sakai instance with the instance configuration and a login details.
@@ -95,7 +95,7 @@ Sakai is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Sakai', '~> 0.0.6'
+pod 'Sakai', '~> 0.1.0'
 ```
 
 ## Author
