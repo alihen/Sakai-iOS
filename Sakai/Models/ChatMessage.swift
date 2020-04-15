@@ -20,7 +20,7 @@ public struct SakaiChatMessage: Codable {
     public let chatChannelID: String
     public let context: String?
     public let id: String
-    public let messageDate: Int?
+    public let messageDate: Int
     public let messageDateString: String?
     public let owner: String
     public let ownerDisplayID: String
