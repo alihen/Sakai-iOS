@@ -19,7 +19,7 @@ public struct SakaiCalendarItem: Codable {
     public let assignmentID: String?
     public let attachments: [SakaiAnnouncementAttachment]?
     public let creator: String
-    public let description: String
+    public let description: String?
     public let descriptionFormatted: String?
     public let duration: Int
     public let eventIcon: String?
@@ -28,14 +28,14 @@ public struct SakaiCalendarItem: Codable {
     public let lastTime: SakaiCalendarEvent?
     public let location: String?
     public let recurrenceRule: SakaiCalendarRecurrenceRule?
-    public let reference: String
+    public let reference: String?
     public let siteID: String
     public let siteName: String
     public let title: String
-    public let type: String
-    public let entityReference: String
+    public let type: String?
+    public let entityReference: String?
     public let entityURL: URL
-    public let entityTitle: String
+    public let entityTitle: String?
 
     enum CodingKeys: String, CodingKey {
         case assignmentID = "assignmentId"
@@ -62,14 +62,14 @@ public struct SakaiCalendarItem: Codable {
 }
 
 public struct SakaiCalendarEvent: Codable {
-    public let display: String
-    public let time: Int
+    public let display: String?
+    public let time: Int?
 }
 
 public struct SakaiCalendarRecurrenceRule: Codable {
-    public let count: Int
-    public let frequency: String
-    public let frequencyDescription: String
-    public let interval: Int
+    public let count: Int?
+    public let frequency: String?
+    public let frequencyDescription: String?
+    public let interval: Int?
     public let until: SakaiCalendarEvent?
 }

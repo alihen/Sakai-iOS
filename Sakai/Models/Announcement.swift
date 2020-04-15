@@ -32,7 +32,7 @@ public struct SakaiAnnouncement: Codable {
 public struct SakaiAnnouncementAttachment: Codable {
     public let id : String
     public let name : String
-    public let ref : String
-    public let type : String
+    public let ref : String?
+    public let type : String?
     public let url : URL
 }
