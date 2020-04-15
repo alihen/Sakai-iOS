@@ -18,9 +18,9 @@ public struct SakaiChatMessageCollection: Codable {
 public struct SakaiChatMessage: Codable {
     public let body: String
     public let chatChannelID: String
-    public let context: String
+    public let context: String?
     public let id: String
-    public let messageDate: Int
+    public let messageDate: Int?
     public let messageDateString: String?
     public let owner: String
     public let ownerDisplayID: String
@@ -28,7 +28,7 @@ public struct SakaiChatMessage: Codable {
     public let removeable: Bool
     public let entityReference: String
     public let entityURL: URL
-    public let entityID: String
+    public let entityID: String?
     public var avatarPath: String {
         get {
             return "/direct/profile/\(owner)/image.jpg"

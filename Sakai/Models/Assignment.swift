@@ -16,36 +16,36 @@ public struct SakaiAssignmentCollection: Decodable {
 }
 
 public struct SakaiAssignmentItem: Decodable {
-    public let access: String
+    public let access: String?
     public let attachments: [SakaiAnnouncementAttachment]
     public let author: String
     public let authorLastModified: String?
-    public let closeTime: SakaiAssignmentTime
-    public let closeTimeString: String
-    public let context: String
+    public let closeTime: SakaiAssignmentTime?
+    public let closeTimeString: String?
+    public let context: String?
     public let creator: String?
-    public let dropDeadTime: SakaiAssignmentTime
-    public let dropDeadTimeString: String
-    public let dueTime: SakaiAssignmentTime
-    public let dueTimeString: String
+    public let dropDeadTime: SakaiAssignmentTime?
+    public let dropDeadTimeString: String?
+    public let dueTime: SakaiAssignmentTime?
+    public let dueTimeString: String?
     public let id: String
-    public let instructions: String
+    public let instructions: String?
     public let modelAnswerText: String?
-    public let openTime: SakaiAssignmentTime
-    public let openTimeString: String
-    public let position: Int
+    public let openTime: SakaiAssignmentTime?
+    public let openTimeString: String?
+    public let position: Int?
     public let section: String?
     public let status: String?
-    public let submissionType: String
-    public let timeCreated: SakaiAssignmentTime
-    public let timeLastModified: SakaiAssignmentTime
+    public let submissionType: String?
+    public let timeCreated: SakaiAssignmentTime?
+    public let timeLastModified: SakaiAssignmentTime?
     public let title: String
     public let allowResubmission: Bool
     public let draft: Bool
-    public let entityReference: String
+    public let entityReference: String?
     public let entityURL: URL
     public let entityID: String
-    public let entityTitle: String
+    public let entityTitle: String?
 
     enum CodingKeys: String, CodingKey {
         case access

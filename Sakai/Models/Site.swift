@@ -34,14 +34,14 @@ public struct SakaiSite: Decodable {
     public let joinable : Bool
     public let joinerRole : String?
     public let lastModified : Int64
-    public let maintainRole : String
+    public let maintainRole : String?
     public let modifiedDate : Int64
     //public let modifiedTime : [String : Any]?
     public let owner : String
     public let providerGroupId : String?
     public let pubView: Bool
     public let published : Bool
-    public let reference : String
+    public let reference : String?
     public let shortDescription : String?
     //public let siteGroups : [String : Any]?
     //publiclet siteOwner : [String : Any]?
@@ -50,6 +50,6 @@ public struct SakaiSite: Decodable {
     public let softlyDeleted : Bool
     //public let softlyDeletedDate : Date?
     public let title : String
-    public let type : String
-    public let userRoles : [String]
+    public let type : String?
+    public let userRoles : [String]?
 }

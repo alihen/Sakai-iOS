@@ -13,5 +13,5 @@ public struct SakaiUser: Codable {
     public let email: String?
     public let userEid : String
     public let userId : String
-    public let type: String
+    public let type: String?
 }

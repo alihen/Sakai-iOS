@@ -13,7 +13,7 @@ public struct SakaiSession: Codable {
     public let currentTime : Int64
     public let id : String?
     public let lastAccessedTime : Int64
-    public let maxInactiveInterval : Int
+    public let maxInactiveInterval : Int?
     public let userEid : String
     public let userId : String
 }
