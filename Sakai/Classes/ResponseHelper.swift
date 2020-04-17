@@ -60,18 +60,15 @@ class ResponseHelper {
         switch error {
         case .typeMismatch(let type, let context):
             result["decodingErrorType"] = "typeMismatch"
-            result["MismatchType"] = type.self
-            result["codingPath"] = context.codingPath
+            result["MismatchType"] = String(describing: type.self)
             result["debugDescription"] = context.debugDescription
         case .keyNotFound(let key, let context):
             result["decodingErrorType"] = "keyNotFound"
-            result["keyNotFound"] = key
-            result["codingPath"] = context.codingPath
+            result["keyNotFound"] = key.stringValue
             result["debugDescription"] = context.debugDescription
         case .valueNotFound(let type, let context):
             result["decodingErrorType"] = "valueNotFound"
-            result["valueType"] = type.self
-            result["codingPath"] = context.codingPath
+            result["valueType"] = String(describing: type.self)
             result["debugDescription"] = context.debugDescription
         default:
             break
