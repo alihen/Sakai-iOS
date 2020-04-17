@@ -61,14 +61,17 @@ class ResponseHelper {
         case .typeMismatch(let type, let context):
             result["decodingErrorType"] = "typeMismatch"
             result["MismatchType"] = String(describing: type.self)
+            result["codingPath"] = context.codingPath.map({ $0.debugDescription })
             result["debugDescription"] = context.debugDescription
         case .keyNotFound(let key, let context):
             result["decodingErrorType"] = "keyNotFound"
             result["keyNotFound"] = key.stringValue
+            result["codingPath"] = context.codingPath.map({ $0.debugDescription })
             result["debugDescription"] = context.debugDescription
         case .valueNotFound(let type, let context):
             result["decodingErrorType"] = "valueNotFound"
             result["valueType"] = String(describing: type.self)
+            result["codingPath"] = context.codingPath.map({ $0.debugDescription })
             result["debugDescription"] = context.debugDescription
         default:
             break
