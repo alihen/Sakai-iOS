@@ -42,14 +42,18 @@ public enum SakaiAPI {
 
 extension SakaiAPI: CachePolicyGettable {
     var cachePolicy: URLRequest.CachePolicy {
-        return .reloadIgnoringLocalCacheData
+        switch self {
+        case .site, .announcement, .sites:
+            return .useProtocolCachePolicy
+        default:
+            return .reloadIgnoringLocalCacheData
+        }
     }
 }
 
 extension SakaiAPI: TargetType {
     public var headers: [String : String]? {
         return [
-        "Pragma": "no-cache",
         "User-Agent": "com.sakai.ios/\(RequestHelper.getFrameworkVersion())"]
     }
 
