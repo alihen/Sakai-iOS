@@ -27,6 +27,7 @@ final public class SakaiAPIClient: NSObject {
     internal var password: String? = nil
     public internal(set) var baseURL: URL? = nil
     public var processPool: WKProcessPool = WKProcessPool()
+    internal var errorReportingEngine: SakaiErrorReportingEngine?
 
     public class var shared: SakaiAPIClient {
         struct Static {
