@@ -124,7 +124,7 @@ public class AnnouncementService {
     internal func getAnnouncementSiteTitles(announcements: [SakaiAnnouncement], completion: @escaping NetworkServiceResponse<[SakaiAnnouncement]>) {
         var newAnnouncements: [SakaiAnnouncement] = []
         for var announcement in announcements {
-            sakaiProvider.request(.site(announcement.siteId), completion: { (result) in
+            sakaiProvider.request(.site(announcement.siteId, true), completion: { (result) in
                 do {
                     let response = try result.get()
                     let site = try response.map(SakaiSite.self)

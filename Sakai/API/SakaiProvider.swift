@@ -25,7 +25,7 @@ public enum SakaiAPI {
     case announcementsSite(String)
     case announcementsUser(String)
     case sites
-    case site(String)
+    case site(String, Bool) // Site ID, Flag for Caching
     case contentSite(String, String?) // Site ID, Path
     case contentMy
     case contentUser(String)
@@ -43,7 +43,12 @@ public enum SakaiAPI {
 extension SakaiAPI: CachePolicyGettable {
     var cachePolicy: URLRequest.CachePolicy {
         switch self {
-        case .site, .announcement, .sites:
+        case .announcement, .sites:
+            return .useProtocolCachePolicy
+        case .site(_, let fetchTitle):
+            if fetchTitle {
+                return .returnCacheDataElseLoad
+            }
             return .useProtocolCachePolicy
         default:
             return .reloadIgnoringLocalCacheData
@@ -84,7 +89,7 @@ extension SakaiAPI: TargetType {
             return "/direct/announcement/\(userId).json"
         case .sites:
             return "/direct/site.json"
-        case .site(let id):
+        case .site(let id, _):
             return "/direct/site/\(id).json"
         case .contentSite(let id, let path):
             if let path = path {
@@ -131,6 +136,11 @@ extension SakaiAPI: TargetType {
             return .requestParameters(parameters: ["_username" : username, "_password" : password], encoding: URLEncoding.default)
         case .announcementsUser:
             return .requestParameters(parameters: ["n": "50", "d": "1000"], encoding: URLEncoding.default)
+        case .site(_, let fetchTitle):
+            if fetchTitle {
+                return .requestParameters(parameters: ["fetchTitle": "true"], encoding: URLEncoding.default)
+            }
+            return .requestPlain
         case .sites:
             return .requestParameters(parameters: ["_limit": "100"], encoding: URLEncoding.default)
         case .chatChannels(let siteId):

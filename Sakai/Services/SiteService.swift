@@ -16,7 +16,7 @@ public class SiteService {
                 return
             }
 
-            sakaiProvider.request(.site(id)) { result in
+            sakaiProvider.request(.site(id, false)) { result in
                 completion(ResponseHelper.handle(SakaiSite.self, result: result))
             }
         }
