@@ -26,7 +26,7 @@ public struct SakaiAnnouncement: Codable {
     public let siteId : String
     public let siteTitle : String?
     public internal(set) var title : String?
-    public internal(set) var displaySiteTitle: String?
+    public var displaySiteTitle: String?
 }
 
 public struct SakaiAnnouncementAttachment: Codable {

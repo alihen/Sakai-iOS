@@ -78,7 +78,7 @@ public class AnnouncementService {
         }
     }
 
-    public func getRecentAnnouncements(completion: @escaping NetworkServiceResponse<[SakaiAnnouncement]>) {
+    public func getRecentAnnouncements(sitleTitles: Bool = true, completion: @escaping NetworkServiceResponse<[SakaiAnnouncement]>) {
         SakaiAPIClient.shared.session.prepAuthedRoute { (sessionResult) in
             if let authError = sessionResult.error {
                 completion(.failure(authError))
@@ -91,24 +91,24 @@ public class AnnouncementService {
                     do {
                         let announcementCollection: SakaiAnnouncementCollection = try JSONDecoder().decode(SakaiAnnouncementCollection.self, from: response.data)
                         let announcements: [SakaiAnnouncement] = announcementCollection.collection.sorted(by: { $0.createdOn > $1.createdOn })
-                        self.getAnnouncementSiteTitles(announcements: announcements, completion: { (titleResults) in
-                            switch titleResults {
-                            case .success(var finalAnnouncements):
-                                finalAnnouncements = finalAnnouncements.map({
-                                    var announcement: SakaiAnnouncement = $0
-                                    announcement.body = announcement.body?.stripHTML()
-                                    announcement.title = announcement.title?.trimmingCharacters(in: [" "])
-                                    return announcement
-                                })
-
-                                completion(.success(finalAnnouncements))
-                                return
-                            case .failure:
-                                let sakaiError = SakaiError.parse(result: result)
-                                completion(.failure(sakaiError))
-                                return
-                            }
-                        })
+                        if sitleTitles {
+                            self.getAnnouncementSiteTitles(announcements: announcements, completion: { (titleResults) in
+                                switch titleResults {
+                                case .success(let finalAnnouncements):
+                                    let finalAnnouncements = self.stripAnnouncements(announcements: finalAnnouncements)
+                                    completion(.success(finalAnnouncements))
+                                    return
+                                case .failure:
+                                    let sakaiError = SakaiError.parse(result: result)
+                                    completion(.failure(sakaiError))
+                                    return
+                                }
+                            })
+                        } else {
+                            let finalAnnouncements = self.stripAnnouncements(announcements: announcements)
+                            completion(.success(finalAnnouncements))
+                            return
+                        }
                     } catch {
 
                     }
@@ -121,26 +121,44 @@ public class AnnouncementService {
         }
     }
 
+    func stripAnnouncements(announcements: [SakaiAnnouncement]) -> [SakaiAnnouncement] {
+        let finalAnnouncements: [SakaiAnnouncement] = announcements.map({
+            var announcement: SakaiAnnouncement = $0
+            announcement.body = announcement.body?.stripHTML()
+            announcement.title = announcement.title?.trimmingCharacters(in: [" "])
+            return announcement
+        })
+        return finalAnnouncements
+    }
+
+    public func getSiteTitle(announcement: SakaiAnnouncement, completion: @escaping NetworkServiceResponse<SakaiAnnouncement>) {
+        var resultAnnouncement = announcement
+        sakaiProvider.request(.site(announcement.siteId), completion: { (result) in
+            do {
+                let response = try result.get()
+                let site = try response.map(SakaiSite.self)
+                resultAnnouncement.displaySiteTitle = site.title
+                completion(.success(resultAnnouncement))
+            } catch {
+                let fail = SakaiError.parse(result: result)
+                completion(.failure(fail))
+                return
+            }
+        })
+    }
+
     internal func getAnnouncementSiteTitles(announcements: [SakaiAnnouncement], completion: @escaping NetworkServiceResponse<[SakaiAnnouncement]>) {
         var newAnnouncements: [SakaiAnnouncement] = []
-        for var announcement in announcements {
-            sakaiProvider.request(.site(announcement.siteId), completion: { (result) in
-                do {
-                    let response = try result.get()
-                    let site = try response.map(SakaiSite.self)
-                    announcement.displaySiteTitle = site.title
-                    newAnnouncements.append(announcement)
-
-                    if announcements.count == newAnnouncements.count {
-                        completion(.success(newAnnouncements))
-                        return
-                    }
-                } catch {
-                    let fail = SakaiError.parse(result: result)
-                    completion(.failure(fail))
+        for announcement in announcements {
+            self.getSiteTitle(announcement: announcement) { result in
+                if let announcementToAdd = result.value {
+                    newAnnouncements.append(announcementToAdd)
+                }
+                if announcements.count == newAnnouncements.count {
+                    completion(.success(newAnnouncements))
                     return
                 }
-            })
+            }
         }
     }
 }
