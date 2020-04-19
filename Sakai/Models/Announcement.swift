@@ -19,6 +19,7 @@ public struct SakaiAnnouncement: Codable {
     public let announcementId : String
     public let attachments : [SakaiAnnouncementAttachment]?
     public internal(set) var body : String?
+    public internal(set) var strippedBody : String?
     public let channel : String
     public let createdByDisplayName : String
     public let createdOn : Int64

@@ -65,12 +65,7 @@ public class AnnouncementService {
                     return
                 }
 
-                let strippedAnnouncements: [SakaiAnnouncement] = announcements.map({
-                    var announcement: SakaiAnnouncement = $0
-                    announcement.body = announcement.body?.stripHTML()
-                    announcement.title = announcement.title?.trimmingCharacters(in: [" "])
-                    return announcement
-                })
+                let strippedAnnouncements: [SakaiAnnouncement] = self.stripAnnouncements(announcements: announcements)
 
                 completion(.success(strippedAnnouncements))
                 return
@@ -124,7 +119,7 @@ public class AnnouncementService {
     func stripAnnouncements(announcements: [SakaiAnnouncement]) -> [SakaiAnnouncement] {
         let finalAnnouncements: [SakaiAnnouncement] = announcements.map({
             var announcement: SakaiAnnouncement = $0
-            announcement.body = announcement.body?.stripHTML()
+            announcement.strippedBody = announcement.body?.stripHTML()
             announcement.title = announcement.title?.trimmingCharacters(in: [" "])
             return announcement
         })
