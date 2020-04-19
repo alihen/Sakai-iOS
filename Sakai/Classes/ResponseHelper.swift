@@ -18,6 +18,9 @@ class ResponseHelper {
 
             if let keyPath = atKeyPath {
                 output = try response.map(decode, atKeyPath: keyPath, using: decoder)
+            } else if D.self == String.self,
+                let stringOutput = try response.mapString() as? D {
+                output = stringOutput
             } else {
                 output = try response.map(decode, using: decoder)
             }
