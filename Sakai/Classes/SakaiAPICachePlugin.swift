@@ -14,6 +14,8 @@ public protocol CachePolicyGettable {
 
 final public  class SakaiAPICachePlugin: PluginType {
 
+    public init() {}
+
     public func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
         if let cacheableTarget = target as? CachePolicyGettable {
             var mutableRequest = request
