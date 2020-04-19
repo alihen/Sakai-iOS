@@ -8,13 +8,13 @@
 import Foundation
 import Moya
 
-protocol CachePolicyGettable {
+public protocol CachePolicyGettable {
     var cachePolicy: URLRequest.CachePolicy { get }
 }
 
-final class SakaiAPICachePlugin: PluginType {
+final public  class SakaiAPICachePlugin: PluginType {
 
-    func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
+    public func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
         if let cacheableTarget = target as? CachePolicyGettable {
             var mutableRequest = request
             mutableRequest.cachePolicy = cacheableTarget.cachePolicy
