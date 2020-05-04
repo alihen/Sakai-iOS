@@ -53,3 +53,24 @@ public struct SakaiSite: Decodable {
     public let type : String?
     public let userRoles : [String]?
 }
+
+// A revised approach to handling Sites, using the Portal HTML
+public struct SakaiPortalSiteSection: Decodable {
+    public let term: String
+    public let sites: [SakaiPortalSite]
+
+    init(term: String, sites: [SakaiPortalSite]) {
+        self.term = term
+        self.sites = sites
+    }
+}
+
+public struct SakaiPortalSite: Decodable {
+    public let id: String
+    public let title: String
+
+    init(id: String, title: String) {
+        self.id = id
+        self.title = title
+    }
+}

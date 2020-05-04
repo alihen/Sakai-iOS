@@ -24,6 +24,7 @@ Sakai-iOS provides an easy way to build out a Sakai LMS learning experience with
   s.source_files  = "Sakai/**/*.{swift}"
   
   s.dependency "Moya", "13.0.1"
+  s.dependency "SwiftSoup", "2.3.2"
   s.swift_version = "5.0"
 
 end

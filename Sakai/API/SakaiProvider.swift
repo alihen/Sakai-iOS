@@ -18,6 +18,7 @@ public var sakaiProvider = MoyaProvider<SakaiAPI>(manager: SakaiAPIAlamofireMana
 
 public enum SakaiAPI {
     case session(String, String)
+    case legacyLogin(String, String)
     case sessionCurrent
     case userCurrent
     case userProfile(String)
@@ -25,7 +26,9 @@ public enum SakaiAPI {
     case announcementsSite(String)
     case announcementsUser(String)
     case sites
+    case sitesViaPortal
     case site(String)
+    case sitePages(String)
     case contentSite(String, String?) // Site ID, Path
     case contentMy
     case contentUser(String)
@@ -70,6 +73,8 @@ extension SakaiAPI: TargetType {
         switch self {
         case .session:
             return "/direct/session"
+        case .legacyLogin:
+            return "/portal/xlogin"
         case .sessionCurrent:
             return "/direct/session/current.json"
         case .userCurrent:
@@ -82,10 +87,14 @@ extension SakaiAPI: TargetType {
             return "/direct/announcement/site/\(siteId).json"
         case .announcementsUser(let userId):
             return "/direct/announcement/\(userId).json"
+        case .sitesViaPortal:
+            return "/portal"
         case .sites:
             return "/direct/site.json"
         case .site(let id):
             return "/direct/site/\(id).json"
+        case .sitePages(let id):
+            return "/direct/site/\(id)/pages.json"
         case .contentSite(let id, let path):
             if let path = path {
                 return "/direct/content/resources/\(id)/\(path).json"
@@ -118,7 +127,7 @@ extension SakaiAPI: TargetType {
 
     public var method: Moya.Method {
         switch self {
-        case .session, .postChatMessage:
+        case .session, .postChatMessage, .legacyLogin:
             return .post
         default:
             return .get
@@ -129,8 +138,12 @@ extension SakaiAPI: TargetType {
         switch self {
         case .session(let username, let password):
             return .requestParameters(parameters: ["_username" : username, "_password" : password], encoding: URLEncoding.default)
+        case .legacyLogin(let username, let password):
+            return .requestParameters(parameters: ["eid" : username, "pw" : password], encoding: URLEncoding.httpBody)
         case .announcementsUser:
             return .requestParameters(parameters: ["n": "100"], encoding: URLEncoding.default)
+        case .sites:
+            return .requestParameters(parameters: ["_limit": "40"], encoding: URLEncoding.default)
         case .chatChannels(let siteId):
             return .requestParameters(parameters: ["siteId": siteId], encoding: URLEncoding.default)
         case .chatMessages(let channelId):
