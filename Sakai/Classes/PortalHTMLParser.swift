@@ -26,7 +26,9 @@ class PortalHTMLParser {
                     let courseTitle = try course.text()
                     let courseId = try course.select("a[\(dataSelector)]").attr(dataSelector)
                     let site = SakaiPortalSite(id: courseId, title: courseTitle)
-                    sakaiPortalCourses.append(site)
+                    if !courseId.isEmpty {
+                        sakaiPortalCourses.append(site)
+                    }
                 }
                 let section = SakaiPortalSiteSection(term: termString, sites: sakaiPortalCourses)
                 sakaiPortalSections.append(section)
