@@ -45,13 +45,23 @@ public class SiteService {
                         guard let htmlString = try result.value?.mapString() else {
                             return
                         }
-                        let sections = PortalHTMLParser.parsePortalHTML(
+                        let siteSections = PortalHTMLParser.parsePortalHTML(
                             html: htmlString,
                             sectionSelector: "#otherSitesCategorWrap > div.moresites-left-col",
                             termSelector: "h3",
                             siteSelector: ".otherSitesCategorList > li",
                             dataSelector: "data-site-id")
-                        completion(.success(sections))
+                        let projectSections = PortalHTMLParser.parsePortalHTML(
+                        html: htmlString,
+                        sectionSelector: "#otherSitesCategorWrap > div.moresites-right-col",
+                        termSelector: "h3",
+                        siteSelector: ".otherSitesCategorList > li",
+                        dataSelector: "data-site-id")
+
+                        var result = siteSections
+                        result.append(contentsOf: projectSections)
+
+                        completion(.success(result))
                     }
                     catch {
                         completion(.failure(SakaiError.init(kind: .unknown, localizedDescription: error.localizedDescription)))
