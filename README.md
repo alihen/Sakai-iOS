@@ -95,7 +95,7 @@ Sakai is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Sakai', '~> 0.1.0'
+pod 'Sakai', '~> 0.2.0'
 ```
 
 ## Author

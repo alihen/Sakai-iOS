@@ -4,15 +4,14 @@
 #
 
 Pod::Spec.new do |s|
-
-  s.name         = "Sakai"
-  s.version      = "0.1.0"
-  s.summary      = "Sakai-iOS provides an easy way to build out a Sakai LMS learning experience."
-  s.description  = <<-DESC
+  s.name = "Sakai"
+  s.version = "0.2.0"
+  s.summary = "Sakai-iOS provides an easy way to build out a Sakai LMS learning experience."
+  s.description = <<-DESC
 Sakai-iOS provides an easy way to build out a Sakai LMS learning experience within an iOS app.
                     DESC
 
-  s.homepage     = "https://github.com/alihen/Sakai-iOS"
+  s.homepage = "https://github.com/alihen/Sakai-iOS"
 
   s.license = { :type => "MIT", :file => "LICENSE" }
   s.author = "Alastair Hendricks"
@@ -20,11 +19,10 @@ Sakai-iOS provides an easy way to build out a Sakai LMS learning experience with
 
   s.platform = :ios, "11.0"
 
-  s.source = { :git => 'https://github.com/alihen/Sakai-iOS.git', :tag => s.version.to_s }
-  s.source_files  = "Sakai/**/*.{swift}"
-  
+  s.source = { :git => "https://github.com/alihen/Sakai-iOS.git", :tag => s.version.to_s }
+  s.source_files = "Sakai/**/*.{swift}"
+
   s.dependency "Moya", "13.0.1"
   s.dependency "SwiftSoup", "2.3.2"
   s.swift_version = "5.0"
-
 end
