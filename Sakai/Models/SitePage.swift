@@ -39,7 +39,7 @@ public struct SitePageTool: Decodable {
     public let url : URL
     public var toolPath: String {
         get {
-            return "/portal/tool/\(id)/main"
+            return "/portal/tool-reset/\(id)"
         }
     }
 

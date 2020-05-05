@@ -64,11 +64,15 @@ public class SiteService {
                         completion(.success(result))
                     }
                     catch {
-                        completion(.failure(SakaiError.init(kind: .unknown, localizedDescription: error.localizedDescription)))
+                        self.getAllSitesViaDirect { result in
+                            completion(result)
+                        }
                     }
                 }
             } else {
-                completion(.failure(SakaiError.init(kind: .unknown, localizedDescription: "Unable to login via xlogin")))
+                self.getAllSitesViaDirect { result in
+                    completion(result)
+                }
             }
         }
     }
