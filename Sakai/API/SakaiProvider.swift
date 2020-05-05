@@ -140,8 +140,6 @@ extension SakaiAPI: TargetType {
             return .requestParameters(parameters: ["_username" : username, "_password" : password], encoding: URLEncoding.default)
         case .legacyLogin(let username, let password):
             return .requestParameters(parameters: ["eid" : username, "pw" : password], encoding: URLEncoding.httpBody)
-        case .announcementsUser:
-            return .requestParameters(parameters: ["n": "100"], encoding: URLEncoding.default)
         case .sites:
             return .requestParameters(parameters: ["_limit": "40"], encoding: URLEncoding.default)
         case .chatChannels(let siteId):
