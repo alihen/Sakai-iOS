@@ -30,19 +30,12 @@ class SiteTest: QuickSpec {
                         expect(siteResult.error).to(beNil())
                         expect(siteResult.value?.id).toNot(beNil())
                         expect(siteResult.value?.sitePages).toNot(beEmpty())
-                        guard let sitePage = siteResult.value?.sitePages?.first else {
-                            fail("Unable to get site page")
-                            done()
-                            return
-                        }
-
-                        expect(sitePage.pagePath).to(equal("/portal/page/\(sitePage.id)"))
                         done()
                     })
                 }
             }
 
-            context("if the site id does note exist") {
+            context("if the site id does not exist") {
                 it("fails to return a single site by ID") {
                     waitUntil(timeout: 20) { done in
                         SakaiAPIClient.shared.site.getSite(withID: SakaiTestConfiguration.fail.siteId, completion: { (siteResult) in
@@ -53,14 +46,38 @@ class SiteTest: QuickSpec {
                     }
                 }
             }
+            
 
-            it("returns all the sites") {
+            it("returns all the sites via parsing HTML") {
                 waitUntil(timeout: 50) { done in
-                    SakaiAPIClient.shared.site.getAllSites(completion: { (siteResults) in
+                    SakaiAPIClient.shared.site.getAllSitesViaPortal(completion: { (siteResults) in
                         expect(siteResults.error).to(beNil())
                         expect(siteResults.value).toNot(beEmpty())
                         done()
                     })
+                }
+            }
+
+            it("returns all the sites via the direct endpoint") {
+                waitUntil(timeout: 50) { done in
+                    SakaiAPIClient.shared.site.getAllSitesViaDirect(completion: { (siteResults) in
+                        expect(siteResults.error).to(beNil())
+                        expect(siteResults.value).toNot(beEmpty())
+                        done()
+                    })
+                }
+            }
+
+            it("returns the site pages for a specified site") {
+                waitUntil(timeout: 50) { done in
+                    SakaiAPIClient.shared.site.getSitePages(siteId: SakaiTestConfiguration.pass.siteId) { result in
+                        expect(result.error).to(beNil())
+                        expect(result.value).toNot(beNil())
+                        expect(result.value).toNot(beEmpty())
+                        expect(result.value?.first?.tools).toNot(beEmpty())
+                        expect(result.value?.first?.tools?.first?.toolPath).toNot(beNil())
+                        done()
+                    }
                 }
             }
         }

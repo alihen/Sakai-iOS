@@ -58,6 +58,20 @@ public class SessionService {
         }
     }
 
+    public func legacyLoginUser(username: String, password: String, completion: @escaping NetworkServiceResponse<Bool>) {
+        sakaiProvider.request(.legacyLogin(username, password)) { result in
+
+            if let error = result.error {
+                let error = SakaiError.init(kind: .unknown, localizedDescription: error.localizedDescription)
+                completion(.failure(error))
+                return
+            }
+
+            completion(.success(true))
+            return
+        }
+    }
+
     public func getSession(completion: @escaping NetworkServiceResponse<SakaiSession>) {
         sakaiProvider.request(.sessionCurrent) { result in
             completion(ResponseHelper.handle(SakaiSession.self, result: result))

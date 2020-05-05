@@ -9,37 +9,47 @@ import Foundation
 
 public struct SitePage: Decodable {
     public let id: String
-    public let layout: Int?
-    public let activeEdit: Bool
     public let siteID: String
     public let position: Int?
-    public let popUp: Bool?
-    public let homePage: Bool?
     public let url: URL
     public let title: String
     public let skin: String?
     public let layoutTitle: String?
-    public let reference: String?
-    public let titleCustom: Bool?
-    public var pagePath: String {
-        get {
-            return "/portal/page/\(id)"
-        }
-    }
+    public let tools: [SitePageTool]?
 
     enum CodingKeys: String, CodingKey {
         case id
-        case layout
-        case activeEdit
         case siteID = "siteId"
         case position
-        case popUp
-        case homePage
         case url
         case title
         case skin
         case layoutTitle
-        case reference
-        case titleCustom
+        case tools
+    }
+}
+
+public struct SitePageTool: Decodable {
+    public let toolId: String
+    public let pageOrder: Int?
+    public let siteId: String
+    public let id: String
+    public let title: String
+    public let pageId: String
+    public let url : URL
+    public var toolPath: String {
+        get {
+            return "/portal/tool-reset/\(id)"
+        }
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case toolId
+        case pageOrder
+        case siteId
+        case id
+        case title
+        case pageId
+        case url
     }
 }
