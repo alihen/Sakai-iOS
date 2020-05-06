@@ -46,7 +46,7 @@ public enum SakaiAPI {
 extension SakaiAPI: CachePolicyGettable {
     public var cachePolicy: URLRequest.CachePolicy {
         switch self {
-        case .sites, .site, .announcementsUser:
+        case .sites, .site:
             return .reloadRevalidatingCacheData
         default:
             return .reloadIgnoringLocalAndRemoteCacheData

@@ -30,13 +30,13 @@ public struct SitePage: Decodable {
 }
 
 public struct SitePageTool: Decodable {
-    public let toolId: String
+    public let toolId: String?
     public let pageOrder: Int?
-    public let siteId: String
+    public let siteId: String?
     public let id: String
-    public let title: String
-    public let pageId: String
-    public let url : URL
+    public let title: String?
+    public let pageId: String?
+    public let url : URL?
     public var toolPath: String {
         get {
             return "/portal/tool-reset/\(id)"
