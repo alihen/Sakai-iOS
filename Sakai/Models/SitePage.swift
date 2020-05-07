@@ -12,7 +12,7 @@ public struct SitePage: Decodable {
     public let siteID: String
     public let position: Int?
     public let url: URL
-    public let title: String
+    public let title: String?
     public let skin: String?
     public let layoutTitle: String?
     public let tools: [SitePageTool]?
