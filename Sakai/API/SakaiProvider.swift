@@ -139,7 +139,7 @@ extension SakaiAPI: TargetType {
         case .session(let username, let password):
             return .requestParameters(parameters: ["_username" : username, "_password" : password], encoding: URLEncoding.default)
         case .announcementsUser:
-            return .requestParameters(parameters: ["n": "30", "d": "90"], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["n": "500", "d": "700"], encoding: URLEncoding.default)
         case .legacyLogin(let username, let password):
             return .requestParameters(parameters: ["eid" : username, "pw" : password], encoding: URLEncoding.httpBody)
         case .sites:
