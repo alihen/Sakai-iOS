@@ -80,7 +80,7 @@ public class AnnouncementService {
                 return
             }
 
-            sakaiProvider.request(.announcementsUser("user")) { (result) in
+            sakaiProvider.request(.recentAnnouncements) { (result) in
                 switch result {
                 case .success(let response):
                     do {
