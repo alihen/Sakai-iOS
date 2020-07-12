@@ -47,13 +47,13 @@ public class SiteService {
                         }
                         let siteSections = PortalHTMLParser.parsePortalHTML(
                             html: htmlString,
-                            sectionSelector: "#otherSitesCategorWrap > div.moresites-left-col",
+                            sectionSelector: "#otherSitesCategorWrap > div.moresites-left-col > div.fav-sites-term",
                             termSelector: "h3",
                             siteSelector: ".otherSitesCategorList > li",
                             dataSelector: "data-site-id")
                         let projectSections = PortalHTMLParser.parsePortalHTML(
                         html: htmlString,
-                        sectionSelector: "#otherSitesCategorWrap > div.moresites-right-col",
+                        sectionSelector: "#otherSitesCategorWrap > div.moresites-right-col > div.fav-sites-term",
                         termSelector: "h3",
                         siteSelector: ".otherSitesCategorList > li",
                         dataSelector: "data-site-id")
