@@ -8,10 +8,8 @@
 import Foundation
 
 public struct SakaiUser: Codable {
-    public let firstName: String?
-    public let lastName: String?
+    public let displayName: String?
     public let email: String?
-    public let userEid : String
-    public let userId : String
-    public let type: String?
+    public let eid : String?
+    public let id : String
 }
