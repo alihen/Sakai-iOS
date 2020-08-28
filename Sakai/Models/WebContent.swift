@@ -8,9 +8,9 @@
 import Foundation
 
 public struct SakaiWebContent: Decodable {
-    var title: String
-    var url: String
-    var entityReference: String
-    var entityURL: String
-    var entityTitle: String
+    public let title: String
+    public let url: String
+    public let entityReference: String
+    public let entityURL: String
+    public let entityTitle: String
 }
