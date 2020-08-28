@@ -32,11 +32,15 @@ public struct SitePage: Decodable {
 public struct SitePageTool: Decodable {
     public let toolId: String?
     public let pageOrder: Int?
+    public let placementId: String?
+    public let context: String?
+    public let description: String?
     public let siteId: String?
     public let id: String
     public let title: String?
     public let pageId: String?
     public let url : URL?
+    public let home: Bool?
     public var toolPath: String {
         get {
             return "/portal/tool-reset/\(id)"
@@ -51,5 +55,9 @@ public struct SitePageTool: Decodable {
         case title
         case pageId
         case url
+        case placementId
+        case context
+        case description
+        case home
     }
 }
