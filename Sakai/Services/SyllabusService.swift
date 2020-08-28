@@ -18,15 +18,7 @@ public class SyllabusService {
             }
 
             sakaiProvider.request(.syllabus(id)) { result in
-                let result = ResponseHelper.handle(SakaiSyllabus.self, result: result)
-
-                guard let syllabus: SakaiSyllabus = result.value else {
-                    completion(result)
-                    return
-                }
-
-                completion(.success(syllabus))
-                return
+                completion(ResponseHelper.handle(SakaiSyllabus.self, result: result))
             }
         }
     }
