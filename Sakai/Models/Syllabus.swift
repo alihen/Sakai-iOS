@@ -9,10 +9,10 @@ import Foundation
 
 public struct SakaiSyllabus: Decodable {
     public let items: [SakaiSyllabusItem]
-    public let redirectUrl: URL?
+    public let redirectUrl: String?
     public let siteId: String
     public let entityReference: String
-    public let entityURL: URL
+    public let entityURL: String
     public let entityTitle: String
 
     public static let syllabus = SakaiSyllabus(
@@ -35,7 +35,7 @@ public struct SakaiSyllabus: Decodable {
         redirectUrl: nil,
         siteId: "468246f4-c2a7-460b-9a1b-0c1e0377a436",
         entityReference: "/syllabus",
-        entityURL: URL(string: "https://sakai.unc.edu/direct/syllabus")!,
+        entityURL: "https://sakai.unc.edu/direct/syllabus",
         entityTitle: "site")
 }
 
