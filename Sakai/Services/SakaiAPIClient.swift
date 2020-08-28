@@ -21,6 +21,7 @@ final public class SakaiAPIClient: NSObject {
     public let chat: ChatService = ChatService()
     public let calendar: CalendarService = CalendarService()
     public let assignement: AssignmentService = AssignmentService()
+    public let webContent: WebContentService = WebContentService()
     public internal(set) var loggedInUserSession: SakaiSession?
 
     internal var username: String? = nil
