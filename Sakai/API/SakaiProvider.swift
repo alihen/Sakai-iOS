@@ -42,6 +42,8 @@ public enum SakaiAPI {
     case assignmentSite(String)
     case assignmentItem(String)
     case assignmentMy
+    case webContent(String) // Site ID
+    case syllabus(String) // Site ID
 }
 
 extension SakaiAPI: CachePolicyGettable {
@@ -125,6 +127,10 @@ extension SakaiAPI: TargetType {
             return "/direct/assignment/item/\(assignmentId).json"
         case .assignmentMy:
             return "/direct/assignment/my.json"
+        case .webContent(let siteId):
+            return "/direct/webcontent/site/\(siteId).json"
+        case .syllabus(let siteId):
+            return "/direct/syllabus/site/\(siteId).json"
         }
     }
 
