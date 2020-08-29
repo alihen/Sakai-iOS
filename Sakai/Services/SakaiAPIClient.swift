@@ -23,6 +23,7 @@ final public class SakaiAPIClient: NSObject {
     public let assignement: AssignmentService = AssignmentService()
     public let webContent: WebContentService = WebContentService()
     public let syllabus: SyllabusService = SyllabusService()
+    public let gradebook: GradebookService = GradebookService()
     public internal(set) var loggedInUserSession: SakaiSession?
 
     internal var username: String? = nil
