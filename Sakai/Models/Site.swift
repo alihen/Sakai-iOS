@@ -54,8 +54,10 @@ public struct SakaiSite: Decodable {
     public let userRoles : [String]?
     
     public static let portalSiteList = [
-        SakaiPortalSite(id: "e91cbf73-0320-4e5a-a789-35ae750894da", title: "DENT100.001.FA20"),
-        SakaiPortalSite(id: "b4021848-bd0a-4f60-bb70-b192e23dad26", title: "DENT101.001.FA20"),
+        SakaiPortalSiteSection(term: "Fall 2020", sites: [
+            SakaiPortalSite(id: "e91cbf73-0320-4e5a-a789-35ae750894da", title: "DENT100.001.FA20"),
+            SakaiPortalSite(id: "b4021848-bd0a-4f60-bb70-b192e23dad26", title: "DENT101.001.FA20"),
+        ])
     ]
 }
 
